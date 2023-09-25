@@ -9,6 +9,7 @@ import Foundation
 
 protocol UseCase {
     
+    var delegate: UseCaseDelegate? { get set }
     var container: [Event] { get set }
     var informations: [Event: Information] { get set }
     

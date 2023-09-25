@@ -18,6 +18,7 @@
 		BF48DD0E2AC156A1000CEFD6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD0D2AC156A1000CEFD6 /* Event.swift */; };
 		BF48DD102AC16639000CEFD6 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD0F2AC16639000CEFD6 /* Information.swift */; };
 		BF48DD1E2AC1B650000CEFD6 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD1D2AC1B650000CEFD6 /* UseCase.swift */; };
+		BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD1F2AC1B6AE000CEFD6 /* UseCaseDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BF48DD0D2AC156A1000CEFD6 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		BF48DD0F2AC16639000CEFD6 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		BF48DD1D2AC1B650000CEFD6 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
+		BF48DD1F2AC1B6AE000CEFD6 /* UseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				BF48DD1D2AC1B650000CEFD6 /* UseCase.swift */,
+				BF48DD1F2AC1B6AE000CEFD6 /* UseCaseDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				BF48DCF02ABD2FA9000CEFD6 /* SceneDelegate.swift in Sources */,
 				BF48DD0E2AC156A1000CEFD6 /* Event.swift in Sources */,
 				BF48DD0C2AC11D25000CEFD6 /* Gu.swift in Sources */,
+				BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
