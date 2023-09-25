@@ -14,6 +14,8 @@ protocol UseCase {
     var informations: [Event: Information] { get set }
     
     func filter(from container: [Event], gu: Gu?, date: Date?) -> [Event]
+    mutating func setContainer(_ container: [Event])
+    mutating func appendEvents(_ events: [Event])
 }
 
 extension UseCase {
@@ -33,5 +35,13 @@ extension UseCase {
                   let date else { return container }
             return container.filter { $0.gu == gu && $0.startDate <= date && $0.endDate >= date }
         }
+    }
+    
+    mutating func setContainer(_ container: [Event]) {
+        self.container = container
+    }
+    
+    mutating func appendEvents(_ events: [Event]) {
+        container += events
     }
 }
