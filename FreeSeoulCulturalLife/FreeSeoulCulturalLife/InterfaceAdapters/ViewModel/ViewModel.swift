@@ -14,6 +14,7 @@ class ViewModel: UseCaseDelegate {
     
     init(useCase: UseCase) {
         self.useCase = useCase
+        useCase.delegate = self
     }
     
     func setFilter(gu: Gu?, date: Date?) {
