@@ -15,4 +15,11 @@ struct Event: Hashable {
     let imageLink: URL
     let startDate: Date
     let endDate: Date
+    let place: String
+    let homePage: String
+    let portal: String
+    let player: String?
+    let useTarget: String?
+    let program: String?
+    let description: String?
 }
