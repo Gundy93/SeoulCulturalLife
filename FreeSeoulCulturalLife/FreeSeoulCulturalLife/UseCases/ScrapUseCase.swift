@@ -6,13 +6,16 @@
 //
 
 
-struct ScrapUseCase: UseCase {
+class ScrapUseCase: UseCase {
     
-    var delegate: UseCaseDelegate?
+    weak var delegate: UseCaseDelegate? = nil
     var container: [Event] {
         didSet {
             delegate?.useCaseDidUpdate(events: container)
         }
     }
-    var informations: [Event : Information]
+    
+    init(container: [Event]) {
+        self.container = container
+    }
 }

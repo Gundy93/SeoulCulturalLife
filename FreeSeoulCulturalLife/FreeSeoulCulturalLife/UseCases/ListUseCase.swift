@@ -6,23 +6,22 @@
 //
 
 
-struct ListUseCase: UseCase {
+class ListUseCase: UseCase {
     
-    var delegate: UseCaseDelegate?
+    weak var delegate: UseCaseDelegate? = nil
     var container: [Event] = [] {
         didSet {
             delegate?.useCaseDidUpdate(events: container, current)
         }
     }
-    var informations: [Event: Information] = [:]
     var current: [Event] = []
     
-    mutating func setContainer(_ container: [Event]) {
+    func setContainer(_ container: [Event]) {
         current = container
         self.container = container
     }
     
-    mutating func appendEvents(_ events: [Event]) {
+    func appendEvents(_ events: [Event]) {
         current = events
         container += events
     }
