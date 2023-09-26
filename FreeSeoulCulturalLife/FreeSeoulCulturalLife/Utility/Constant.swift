@@ -10,4 +10,5 @@ import Foundation
 enum Constant {
     
     static let defaultPostName: Notification.Name = Notification.Name("default")
+    static let additionPostName: Notification.Name = Notification.Name("addition")
 }

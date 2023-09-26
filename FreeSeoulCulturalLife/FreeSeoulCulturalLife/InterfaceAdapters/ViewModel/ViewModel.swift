@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ViewModel {
+class ViewModel: UseCaseDelegate {
     
     private var useCase: UseCase
     private(set) var filters: (gu: Gu?, date: Date?) = (nil, nil)
@@ -18,22 +18,19 @@ class ViewModel {
     
     func setFilter(gu: Gu?, date: Date?) {
         filters = (gu, date)
-        post(useCase.container)
+        post(events: useCase.container)
     }
     
-    private func post(_ events: [Event]) {
-        NotificationCenter.default.post(name: Constant.defaultPostName,
+    func post(events: [Event], name: Notification.Name = Constant.defaultPostName) {
+        NotificationCenter.default.post(name: name,
                                         object: useCase.filter(from: events,
                                                                gu: filters.gu,
                                                                date: filters.date))
     }
-}
-
-extension ViewModel: UseCaseDelegate {
     
     func useCaseDidUpdate(events: [Event]...) {
         guard let events = events.first else { return }
         
-        post(events)
+        post(events: events)
     }
 }
