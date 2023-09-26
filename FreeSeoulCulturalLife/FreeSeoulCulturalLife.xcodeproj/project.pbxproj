@@ -22,6 +22,7 @@
 		BF48DD242AC1CAFD000CEFD6 /* ScrapUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD232AC1CAFD000CEFD6 /* ScrapUseCase.swift */; };
 		BF48DD302AC2C635000CEFD6 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD2F2AC2C635000CEFD6 /* Constant.swift */; };
 		BF48DD332AC2C73E000CEFD6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */; };
+		BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		BF48DD232AC1CAFD000CEFD6 /* ScrapUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapUseCase.swift; sourceTree = "<group>"; };
 		BF48DD2F2AC2C635000CEFD6 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		BF48DD2E2AC2C61E000CEFD6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				BF48DD342AC31C63000CEFD6 /* Extensions */,
 				BF48DD2F2AC2C635000CEFD6 /* Constant.swift */,
 			);
 			path = Utility;
@@ -140,6 +143,14 @@
 				BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */,
 			);
 			path = InterfaceAdapters;
+			sourceTree = "<group>";
+		};
+		BF48DD342AC31C63000CEFD6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +226,7 @@
 			files = (
 				BF48DD062AC1172A000CEFD6 /* Category.swift in Sources */,
 				BF48DD242AC1CAFD000CEFD6 /* ScrapUseCase.swift in Sources */,
+				BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */,
 				BF48DD1E2AC1B650000CEFD6 /* UseCase.swift in Sources */,
 				BF48DD222AC1B74E000CEFD6 /* ListUseCase.swift in Sources */,
 				BF48DCF22ABD2FA9000CEFD6 /* ViewController.swift in Sources */,
