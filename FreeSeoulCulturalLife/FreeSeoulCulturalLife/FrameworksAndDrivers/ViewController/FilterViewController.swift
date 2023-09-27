@@ -41,6 +41,29 @@ final class FilterViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addObserver()
+    }
+
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setTexts),
+                                               name: GlobalConstant.filterPostName,
+                                               object: nil)
+    }
+
+    @objc
+    private func setTexts(_ notification: Notification) {
+        guard let (category, gu) = notification.object as? (Category?, Gu?) else { return }
+        let categoryText = category?.rawValue
+        let guText = gu?.rawValue
+        
+        categoryLabel.text = category == nil ? Constant.notSelected : categoryText
+        guLabel.text = gu == nil ? Constant.notSelected : guText
+    }
 }
 
 extension FilterViewController {

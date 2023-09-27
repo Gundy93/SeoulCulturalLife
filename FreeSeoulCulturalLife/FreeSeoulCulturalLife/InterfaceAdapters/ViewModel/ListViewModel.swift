@@ -15,6 +15,6 @@ final class ListViewModel: ViewModel {
               let last = events.last else { return }
         let name = first == last ? GlobalConstant.defaultPostName : GlobalConstant.additionPostName
         
-        post(events: last, name: name)
+        postEvents(last, name: name)
     }
 }

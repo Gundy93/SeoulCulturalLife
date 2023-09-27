@@ -10,28 +10,46 @@ import Foundation
 class ViewModel: UseCaseDelegate {
     
     private var useCase: UseCase
-    private(set) var filters: (gu: Gu?, date: Date?) = (nil, nil)
+    private(set) var category: Category? = nil
+    private(set) var gu: Gu? = nil
+    private(set) var date: Date? = nil
     
     init(useCase: UseCase) {
         self.useCase = useCase
         useCase.delegate = self
     }
     
-    func setFilter(gu: Gu?, date: Date?) {
-        filters = (gu, date)
-        post(events: useCase.container, name: GlobalConstant.defaultPostName)
+    func setCategory(_ category: Category?) {
+        self.category = category
+        postFilters()
     }
     
-    func post(events: [Event], name: Notification.Name) {
+    func setGu(_ gu: Gu?) {
+        self.gu = gu
+        postFilters()
+        postEvents(useCase.container, name: GlobalConstant.defaultPostName)
+    }
+    
+    func setDate(_ date: Date?) {
+        self.date = date
+        postEvents(useCase.container, name: GlobalConstant.defaultPostName)
+    }
+    
+    private func postFilters() {
+        NotificationCenter.default.post(name: GlobalConstant.filterPostName,
+                                        object: (category, gu))
+    }
+    
+    func postEvents(_ events: [Event], name: Notification.Name) {
         NotificationCenter.default.post(name: name,
                                         object: useCase.filter(from: events,
-                                                               gu: filters.gu,
-                                                               date: filters.date))
+                                                               gu: gu,
+                                                               date: date))
     }
     
     func useCaseDidUpdate(events: [Event]...) {
         guard let events = events.first else { return }
         
-        post(events: events, name: GlobalConstant.defaultPostName)
+        postEvents(events, name: GlobalConstant.defaultPostName)
     }
 }
