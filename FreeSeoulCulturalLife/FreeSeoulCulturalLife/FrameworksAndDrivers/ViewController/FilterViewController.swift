@@ -40,9 +40,12 @@ final class FilterViewController: UIViewController {
     }()
     let containerStackView: UIStackView = UIStackView(spacing: 20,
                                                       axis: .vertical)
+    var currentFilter: (category: Category?, gu: Gu?, date: Date?)
+    var isDone: Bool = false
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
+        currentFilter = (viewModel.category, viewModel.gu, viewModel.date)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,6 +61,13 @@ final class FilterViewController: UIViewController {
         configureViewHierarchy()
         setTexts(category: viewModel.category, gu: viewModel.gu)
         configureSegmentedControl()
+        configureNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        cancelFilter()
     }
 
     private func addObserver() {
@@ -127,6 +137,41 @@ final class FilterViewController: UIViewController {
     private func toggleDatePicker(_ segmentedControl: UISegmentedControl) {
         datePicker.isEnabled = segmentedControl.selectedSegmentIndex != 0
     }
+    
+    private func configureNavigationBar() {
+        navigationItem.title = Constant.navigationTitle
+        navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel,
+                                                           primaryAction: makeCancelAction())
+        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .done,
+                                                            primaryAction: makeDoneAction())
+    }
+    
+    private func makeCancelAction() -> UIAction {
+        let action = UIAction() { [weak self] _ in
+            self?.dismiss(animated: true)
+        }
+        
+        return action
+    }
+    
+    private func makeDoneAction() -> UIAction {
+        let action = UIAction() { [weak self] _ in
+            if self?.datePicker.isEnabled == true {
+                self?.viewModel.setDate(self?.datePicker.date)
+            }
+            self?.isDone = true
+            self?.dismiss(animated: true)
+        }
+        
+        return action
+    }
+    
+    private func cancelFilter() {
+        guard isDone == false else { return }
+        
+        viewModel.setCategory(currentFilter.category)
+        viewModel.setGu(currentFilter.gu)
+    }
 }
 
 extension FilterViewController {
@@ -139,5 +184,7 @@ extension FilterViewController {
         static let notSelected: String = "선택 안 함"
         static let selected: String = "선택"
         static let buttonImageName: String = "chevron.down"
+        static let navigationTitle: String = "필터"
+//        static let cancel: String = "취소"
     }
 }
