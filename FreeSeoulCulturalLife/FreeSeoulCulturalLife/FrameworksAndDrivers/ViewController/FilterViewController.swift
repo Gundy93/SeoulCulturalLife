@@ -58,6 +58,7 @@ final class FilterViewController: UIViewController {
         super.viewDidLoad()
         
         addObserver()
+        configureBackgroundColor()
         configureViewHierarchy()
         setTexts(category: viewModel.category, gu: viewModel.gu)
         configureSegmentedControl()
@@ -89,6 +90,10 @@ final class FilterViewController: UIViewController {
         
         categoryLabel.text = category == nil ? Constant.notSelected : categoryText
         guLabel.text = gu == nil ? Constant.notSelected : guText
+    }
+    
+    private func configureBackgroundColor() {
+        view.backgroundColor = .systemBackground
     }
     
     private func configureViewHierarchy() {

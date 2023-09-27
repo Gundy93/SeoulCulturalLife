@@ -45,8 +45,26 @@ final class ListViewController: UIViewController {
         addObserver()
     }
     
+    private func configurePresentStyle() {
+        modalPresentationStyle = .popover
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureNavigationBar() {
         navigationItem.title = Constant.navigationTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.filterActionImageName),
+                                                            primaryAction: presentFilterAction())
+    }
+    
+    private func presentFilterAction() -> UIAction {
+        let action = UIAction() { [weak self] _ in
+            guard let self else { return }
+            let filterViewController = FilterViewController(viewModel: self.viewModel)
+            
+            self.present(UINavigationController(rootViewController: filterViewController), animated: true)
+        }
+        
+        return action
     }
     
     private func configureViewHierarchy() {
@@ -119,6 +137,7 @@ extension ListViewController {
     enum Constant {
         
         static let navigationTitle: String = "목록"
+        static let filterActionImageName: String = "line.3.horizontal.decrease.circle"
         static let ListCellIdentifier: String = "ListCell"
     }
 }
