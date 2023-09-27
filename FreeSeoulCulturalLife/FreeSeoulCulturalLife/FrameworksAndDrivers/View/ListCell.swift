@@ -16,7 +16,7 @@ final class ListCell: UITableViewCell {
                                                           axis: .vertical,
                                                           distribution: .fillEqually)
     private let containerStackView: UIStackView = UIStackView(spacing: 8,
-                                                              axis: .vertical,
+                                                              axis: .horizontal,
                                                               distribution: .fill)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

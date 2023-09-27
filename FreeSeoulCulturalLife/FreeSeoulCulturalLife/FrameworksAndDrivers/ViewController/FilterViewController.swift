@@ -10,15 +10,24 @@ import UIKit
 final class FilterViewController: UIViewController {
     
     let viewModel: ViewModel
-    let categoryStackView: UIStackView = UIStackView(spacing: 8)
+    let categoryStackView: UIStackView = UIStackView(spacing: 8,
+                                                     axis: .horizontal)
     let categoryHeaderLabel: UILabel = UILabel(text: Constant.categoryHeaderText,
                                                font: .systemFont(ofSize: 20,
                                                                  weight: .bold))
     let categoryLabel: UILabel = UILabel()
+    let categoryButton: UIButton = UIButton(primaryAction: nil,
+                                            image: UIImage(systemName: Constant.buttonImageName))
+    let guStackView: UIStackView = UIStackView(spacing: 8,
+                                               axis: .horizontal)
     let guHeaderLabel: UILabel = UILabel(text: Constant.guHeaderText,
                                          font: .systemFont(ofSize: 20,
                                                            weight: .bold))
     let guLabel: UILabel = UILabel()
+    let guButton: UIButton = UIButton(primaryAction: nil,
+                                      image: UIImage(systemName: Constant.buttonImageName))
+    let dateStackView: UIStackView = UIStackView(spacing: 8,
+                                                 axis: .horizontal)
     let dateHeaderLabel: UILabel = UILabel(text: Constant.dateHeaderText,
                                            font: .systemFont(ofSize: 20,
                                                              weight: .bold))
@@ -31,6 +40,8 @@ final class FilterViewController: UIViewController {
         
         return datePicker
     }()
+    let containerStackView: UIStackView = UIStackView(spacing: 8,
+                                                      axis: .vertical)
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -66,6 +77,37 @@ final class FilterViewController: UIViewController {
         guLabel.text = gu == nil ? Constant.notSelected : guText
     }
     
+    private func configureViewHierarchy() {
+        let safeArea = view.safeAreaLayoutGuide
+        
+        [categoryHeaderLabel, categoryLabel, categoryButton].forEach {
+            categoryStackView.addArrangedSubview($0)
+        }
+        [guHeaderLabel, guLabel, guButton].forEach {
+            guStackView.addArrangedSubview($0)
+        }
+        [dateHeaderLabel, dateSegmentedControl, datePicker].forEach {
+            dateStackView.addArrangedSubview($0)
+        }
+        [categoryStackView, guStackView, dateStackView].forEach {
+            containerStackView.addArrangedSubview($0)
+        }
+        view.addSubview(containerStackView)
+        [categoryLabel, guLabel].forEach {
+            $0.setContentHuggingPriority(.defaultLow,
+                                         for: .horizontal)
+        }
+        NSLayoutConstraint.activate([
+            containerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor,
+                                                    constant: 20),
+            containerStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                                        constant: 8),
+            containerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
+                                                         constant: -8),
+            containerStackView.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor, constant: -20)
+        ])
+    }
+    
     private func configureSegmentedControl() {
         dateSegmentedControl.addTarget(self,
                                        action: #selector(toggleDatePicker),
@@ -87,5 +129,6 @@ extension FilterViewController {
         static let dateHeaderText: String = "날짜"
         static let notSelected: String = "선택 안 함"
         static let selected: String = "선택"
+        static let buttonImageName: String = "chevron.down"
     }
 }
