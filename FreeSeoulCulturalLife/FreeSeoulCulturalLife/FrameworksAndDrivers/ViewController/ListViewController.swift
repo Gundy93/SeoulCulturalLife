@@ -9,6 +9,9 @@ import UIKit
 
 final class ListViewController: UIViewController {
     
+    typealias ListDataSource = UITableViewDiffableDataSource<Int, Event>
+    typealias ListSnapShot = NSDiffableDataSourceSnapshot<Int, Event>
+    
     private var viewModel: ViewModel
     private var listTableView: UITableView = {
         let tableView = UITableView()
@@ -17,6 +20,7 @@ final class ListViewController: UIViewController {
         
         return tableView
     }()
+    private var listDataSource: ListDataSource?
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -52,4 +56,3 @@ final class ListViewController: UIViewController {
         ])
     }
 }
-

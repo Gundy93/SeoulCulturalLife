@@ -23,6 +23,7 @@
 		BF48DD332AC2C73E000CEFD6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */; };
 		BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */; };
 		BF48DD382AC31F90000CEFD6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD372AC31F90000CEFD6 /* ListViewModel.swift */; };
+		BF48DD402AC3E358000CEFD6 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD3F2AC3E358000CEFD6 /* UIStackView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		BF48DD372AC31F90000CEFD6 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		BF48DD3F2AC3E358000CEFD6 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */,
+				BF48DD3F2AC3E358000CEFD6 /* UIStackView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -164,9 +167,17 @@
 		BF48DD3A2AC323C6000CEFD6 /* FrameworksAndDrivers */ = {
 			isa = PBXGroup;
 			children = (
-				BF48DCF12ABD2FA9000CEFD6 /* ListViewController.swift */,
+				BF48DD3B2AC3E0DF000CEFD6 /* ViewController */,
 			);
 			path = FrameworksAndDrivers;
+			sourceTree = "<group>";
+		};
+		BF48DD3B2AC3E0DF000CEFD6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BF48DCF12ABD2FA9000CEFD6 /* ListViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 				BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */,
 				BF48DD1E2AC1B650000CEFD6 /* UseCase.swift in Sources */,
 				BF48DD222AC1B74E000CEFD6 /* ListUseCase.swift in Sources */,
+				BF48DD402AC3E358000CEFD6 /* UIStackView+.swift in Sources */,
 				BF48DCF22ABD2FA9000CEFD6 /* ListViewController.swift in Sources */,
 				BF48DCEE2ABD2FA9000CEFD6 /* AppDelegate.swift in Sources */,
 				BF48DCF02ABD2FA9000CEFD6 /* SceneDelegate.swift in Sources */,
