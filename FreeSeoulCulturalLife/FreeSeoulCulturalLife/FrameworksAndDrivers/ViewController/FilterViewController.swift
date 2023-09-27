@@ -46,6 +46,7 @@ final class FilterViewController: UIViewController {
         super.viewDidLoad()
         
         addObserver()
+        configureSegmentedControl()
     }
 
     private func addObserver() {
@@ -63,6 +64,17 @@ final class FilterViewController: UIViewController {
         
         categoryLabel.text = category == nil ? Constant.notSelected : categoryText
         guLabel.text = gu == nil ? Constant.notSelected : guText
+    }
+    
+    private func configureSegmentedControl() {
+        dateSegmentedControl.addTarget(self,
+                                       action: #selector(toggleDatePicker),
+                                       for: .valueChanged)
+    }
+
+    @objc
+    private func toggleDatePicker(_ segmentedControl: UISegmentedControl) {
+        datePicker.isEnabled = segmentedControl.selectedSegmentIndex != 0
     }
 }
 
