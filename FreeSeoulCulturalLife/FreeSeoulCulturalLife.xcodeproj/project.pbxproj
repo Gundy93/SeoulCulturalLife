@@ -19,7 +19,7 @@
 		BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD1F2AC1B6AE000CEFD6 /* UseCaseDelegate.swift */; };
 		BF48DD222AC1B74E000CEFD6 /* ListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD212AC1B74E000CEFD6 /* ListUseCase.swift */; };
 		BF48DD242AC1CAFD000CEFD6 /* ScrapUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD232AC1CAFD000CEFD6 /* ScrapUseCase.swift */; };
-		BF48DD302AC2C635000CEFD6 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD2F2AC2C635000CEFD6 /* Constant.swift */; };
+		BF48DD302AC2C635000CEFD6 /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD2F2AC2C635000CEFD6 /* GlobalConstant.swift */; };
 		BF48DD332AC2C73E000CEFD6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */; };
 		BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */; };
 		BF48DD382AC31F90000CEFD6 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD372AC31F90000CEFD6 /* ListViewModel.swift */; };
@@ -43,7 +43,7 @@
 		BF48DD1F2AC1B6AE000CEFD6 /* UseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseDelegate.swift; sourceTree = "<group>"; };
 		BF48DD212AC1B74E000CEFD6 /* ListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUseCase.swift; sourceTree = "<group>"; };
 		BF48DD232AC1CAFD000CEFD6 /* ScrapUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapUseCase.swift; sourceTree = "<group>"; };
-		BF48DD2F2AC2C635000CEFD6 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BF48DD2F2AC2C635000CEFD6 /* GlobalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
 		BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BF48DD352AC31C7A000CEFD6 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		BF48DD372AC31F90000CEFD6 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				BF48DD342AC31C63000CEFD6 /* Extensions */,
-				BF48DD2F2AC2C635000CEFD6 /* Constant.swift */,
+				BF48DD2F2AC2C635000CEFD6 /* GlobalConstant.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 				BF48DD0C2AC11D25000CEFD6 /* Gu.swift in Sources */,
 				BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */,
 				BF48DD332AC2C73E000CEFD6 /* ViewModel.swift in Sources */,
-				BF48DD302AC2C635000CEFD6 /* Constant.swift in Sources */,
+				BF48DD302AC2C635000CEFD6 /* GlobalConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

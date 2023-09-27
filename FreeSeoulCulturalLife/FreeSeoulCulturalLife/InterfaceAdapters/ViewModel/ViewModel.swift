@@ -19,10 +19,10 @@ class ViewModel: UseCaseDelegate {
     
     func setFilter(gu: Gu?, date: Date?) {
         filters = (gu, date)
-        post(events: useCase.container)
+        post(events: useCase.container, name: GlobalConstant.defaultPostName)
     }
     
-    func post(events: [Event], name: Notification.Name = Constant.defaultPostName) {
+    func post(events: [Event], name: Notification.Name) {
         NotificationCenter.default.post(name: name,
                                         object: useCase.filter(from: events,
                                                                gu: filters.gu,
@@ -32,6 +32,6 @@ class ViewModel: UseCaseDelegate {
     func useCaseDidUpdate(events: [Event]...) {
         guard let events = events.first else { return }
         
-        post(events: events)
+        post(events: events, name: GlobalConstant.defaultPostName)
     }
 }

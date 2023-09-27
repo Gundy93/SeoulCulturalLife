@@ -13,7 +13,7 @@ final class ListViewModel: ViewModel {
         guard events.count > 1,
               let first = events.first,
               let last = events.last else { return }
-        let name = first == last ? Constant.defaultPostName : Constant.additionPostName
+        let name = first == last ? GlobalConstant.defaultPostName : GlobalConstant.additionPostName
         
         post(events: last, name: name)
     }

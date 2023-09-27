@@ -10,7 +10,7 @@ import UIKit
 final class ListViewController: UIViewController {
     
     typealias ListDataSource = UITableViewDiffableDataSource<Int, Event>
-    typealias ListSnapShot = NSDiffableDataSourceSnapshot<Int, Event>
+    typealias ListSnapshot = NSDiffableDataSourceSnapshot<Int, Event>
     
     private let viewModel: ViewModel
     private let listTableView: UITableView = {
@@ -42,6 +42,7 @@ final class ListViewController: UIViewController {
         configureViewHierarchy()
         configureTableView()
         configureDataSource()
+        addObserver()
     }
     
     private func configureNavigationBar() {
@@ -78,6 +79,36 @@ final class ListViewController: UIViewController {
             
             return cell
         }
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setSnapshot),
+                                               name: GlobalConstant.defaultPostName,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(addItemsToSnapshot),
+                                               name: GlobalConstant.additionPostName,
+                                               object: nil)
+    }
+    
+    @objc
+    private func setSnapshot(_ notification: Notification) {
+        guard let events = notification.object as? [Event] else { return }
+        var snapshot = ListSnapshot()
+        
+        snapshot.appendSections([0])
+        snapshot.appendItems(events)
+        listDataSource?.apply(snapshot)
+    }
+    
+    @objc
+    private func addItemsToSnapshot(_ notification: Notification) {
+        guard let events = notification.object as? [Event],
+              var snapshot = listDataSource?.snapshot() else { return }
+        
+        snapshot.appendItems(events)
+        listDataSource?.apply(snapshot)
     }
 }
 
