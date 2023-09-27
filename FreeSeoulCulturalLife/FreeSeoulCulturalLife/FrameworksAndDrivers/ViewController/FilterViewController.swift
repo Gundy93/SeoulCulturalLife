@@ -10,24 +10,21 @@ import UIKit
 final class FilterViewController: UIViewController {
     
     let viewModel: ViewModel
-    let categoryStackView: UIStackView = UIStackView(spacing: 8,
-                                                     axis: .horizontal)
+    let categoryStackView: UIStackView = UIStackView(axis: .horizontal)
     let categoryHeaderLabel: UILabel = UILabel(text: Constant.categoryHeaderText,
                                                font: .systemFont(ofSize: 20,
                                                                  weight: .bold))
     let categoryLabel: UILabel = UILabel()
     let categoryButton: UIButton = UIButton(primaryAction: nil,
                                             image: UIImage(systemName: Constant.buttonImageName))
-    let guStackView: UIStackView = UIStackView(spacing: 8,
-                                               axis: .horizontal)
+    let guStackView: UIStackView = UIStackView(axis: .horizontal)
     let guHeaderLabel: UILabel = UILabel(text: Constant.guHeaderText,
                                          font: .systemFont(ofSize: 20,
                                                            weight: .bold))
     let guLabel: UILabel = UILabel()
     let guButton: UIButton = UIButton(primaryAction: nil,
                                       image: UIImage(systemName: Constant.buttonImageName))
-    let dateStackView: UIStackView = UIStackView(spacing: 8,
-                                                 axis: .horizontal)
+    let dateStackView: UIStackView = UIStackView(axis: .horizontal)
     let dateHeaderLabel: UILabel = UILabel(text: Constant.dateHeaderText,
                                            font: .systemFont(ofSize: 20,
                                                              weight: .bold))
@@ -37,10 +34,11 @@ final class FilterViewController: UIViewController {
         
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
+        datePicker.locale = Locale(identifier: Locale.preferredLanguages[0])
         
         return datePicker
     }()
-    let containerStackView: UIStackView = UIStackView(spacing: 8,
+    let containerStackView: UIStackView = UIStackView(spacing: 20,
                                                       axis: .vertical)
     
     init(viewModel: ViewModel) {
@@ -57,12 +55,14 @@ final class FilterViewController: UIViewController {
         super.viewDidLoad()
         
         addObserver()
+        configureViewHierarchy()
+        setTexts(category: viewModel.category, gu: viewModel.gu)
         configureSegmentedControl()
     }
 
     private func addObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(setTexts),
+                                               selector: #selector(setTexts(_:)),
                                                name: GlobalConstant.filterPostName,
                                                object: nil)
     }
@@ -70,6 +70,10 @@ final class FilterViewController: UIViewController {
     @objc
     private func setTexts(_ notification: Notification) {
         guard let (category, gu) = notification.object as? (Category?, Gu?) else { return }
+        setTexts(category: category, gu: gu)
+    }
+    
+    private func setTexts(category: Category?, gu: Gu?) {
         let categoryText = category?.rawValue
         let guText = gu?.rawValue
         
@@ -93,10 +97,11 @@ final class FilterViewController: UIViewController {
             containerStackView.addArrangedSubview($0)
         }
         view.addSubview(containerStackView)
-        [categoryLabel, guLabel].forEach {
-            $0.setContentHuggingPriority(.defaultLow,
+        [categoryButton, guButton].forEach {
+            $0.setContentHuggingPriority(.required,
                                          for: .horizontal)
         }
+        dateStackView.setCustomSpacing(40, after: dateHeaderLabel)
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor,
                                                     constant: 20),
@@ -104,7 +109,9 @@ final class FilterViewController: UIViewController {
                                                         constant: 8),
             containerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
                                                          constant: -8),
-            containerStackView.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor, constant: -20)
+            containerStackView.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor, constant: -20),
+            categoryLabel.leadingAnchor.constraint(equalTo: dateSegmentedControl.leadingAnchor),
+            guLabel.leadingAnchor.constraint(equalTo: dateSegmentedControl.leadingAnchor)
         ])
     }
     
@@ -112,6 +119,8 @@ final class FilterViewController: UIViewController {
         dateSegmentedControl.addTarget(self,
                                        action: #selector(toggleDatePicker),
                                        for: .valueChanged)
+        dateSegmentedControl.selectedSegmentIndex = viewModel.date == nil ? 0 : 1
+        datePicker.isEnabled = viewModel.date != nil
     }
 
     @objc
