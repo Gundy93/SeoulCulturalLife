@@ -57,10 +57,10 @@ final class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        congifureFilters()
         addObserver()
         configureBackgroundColor()
         configureViewHierarchy()
-        setTexts(category: viewModel.category, gu: viewModel.gu)
         configureSegmentedControl()
         configureNavigationBar()
     }
@@ -69,6 +69,18 @@ final class FilterViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         cancelFilter()
+    }
+    
+    private func congifureFilters() {
+        setTexts(category: currentFilter.category,
+                 gu: currentFilter.gu)
+        
+        guard let date = currentFilter.date else {
+            datePicker.isEnabled = false
+            return
+        }
+        
+        datePicker.date = date
     }
 
     private func addObserver() {
@@ -135,7 +147,6 @@ final class FilterViewController: UIViewController {
                                        action: #selector(toggleDatePicker),
                                        for: .valueChanged)
         dateSegmentedControl.selectedSegmentIndex = viewModel.date == nil ? 0 : 1
-        datePicker.isEnabled = viewModel.date != nil
     }
 
     @objc
@@ -190,6 +201,5 @@ extension FilterViewController {
         static let selected: String = "선택"
         static let buttonImageName: String = "chevron.down"
         static let navigationTitle: String = "필터"
-//        static let cancel: String = "취소"
     }
 }
