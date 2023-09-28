@@ -63,6 +63,8 @@ final class FilterViewController: UIViewController {
         configureViewHierarchy()
         configureSegmentedControl()
         configureNavigationBar()
+        configureCategoryButton()
+        configureGuButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -174,6 +176,8 @@ final class FilterViewController: UIViewController {
         let action = UIAction() { [weak self] _ in
             if self?.datePicker.isEnabled == true {
                 self?.viewModel.setDate(self?.datePicker.date)
+            } else {
+                self?.viewModel.setDate(nil)
             }
             self?.isDone = true
             self?.dismiss(animated: true)
@@ -187,6 +191,42 @@ final class FilterViewController: UIViewController {
         
         viewModel.setCategory(currentFilter.category)
         viewModel.setGu(currentFilter.gu)
+    }
+    
+    private func configureCategoryButton() {
+        let notSelectedAction = UIAction(title: Constant.notSelected) { [weak self] _ in
+            self?.viewModel.setCategory(nil)
+        }
+        var actions = [notSelectedAction]
+        
+        Category.allCases.forEach { category in
+            let action = UIAction(title: category.rawValue) { [weak self] _ in
+                self?.viewModel.setCategory(category)
+            }
+            
+            actions.append(action)
+        }
+        
+        categoryButton.menu = UIMenu(children: actions)
+        categoryButton.showsMenuAsPrimaryAction = true
+    }
+    
+    private func configureGuButton() {
+        let notSelectedAction = UIAction(title: Constant.notSelected) { [weak self] _ in
+            self?.viewModel.setGu(nil)
+        }
+        var actions = [notSelectedAction]
+        
+        Gu.allCases.forEach { gu in
+            let action = UIAction(title: gu.rawValue) { [weak self] _ in
+                self?.viewModel.setGu(gu)
+            }
+            
+            actions.append(action)
+        }
+        
+        guButton.menu = UIMenu(children: actions)
+        guButton.showsMenuAsPrimaryAction = true
     }
 }
 

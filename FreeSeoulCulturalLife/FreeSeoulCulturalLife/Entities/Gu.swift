@@ -5,7 +5,7 @@
 //  Created by Gundy on 2023/09/25.
 //
 
-enum Gu: String {
+enum Gu: String, CaseIterable {
     
     case jongno = "종로구"
     case jung = "중구"

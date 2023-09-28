@@ -5,7 +5,7 @@
 //  Created by Gundy on 2023/09/25.
 //
 
-enum Category: String {
+enum Category: String, CaseIterable {
     
     case culture = "문화교양/강좌"
     case exhibition = "전시/미술"
