@@ -7,18 +7,22 @@
 
 import Foundation
 
-struct NetworkManager {
+class NetworkManager {
     
     private let fetcher: DataFetcher = DataFetcher()
     private let dataAdapter: JSONDataAdapter
     private var currentIndex: Int = 1
     
-    mutating func loadNewData(_ category: Category?) async {
+    init(dataAdapter: JSONDataAdapter) {
+        self.dataAdapter = dataAdapter
+    }
+    
+    func loadNewData(_ category: Category?) async {
         currentIndex = 1
         await fetchData(category, isNewData: true)
     }
     
-    mutating func loadMoreData(_ category: Category?) async {
+    func loadMoreData(_ category: Category?) async {
         currentIndex += 100
         await fetchData(category, isNewData: false)
     }

@@ -36,7 +36,11 @@ final class ListCell: UITableViewCell {
     }
 
     private func configureViewHierarchy() {
-        [titleLabel, dateLabel].forEach { labelStackView.addArrangedSubview($0) }
+        [titleLabel, dateLabel].forEach {
+            labelStackView.addArrangedSubview($0)
+            $0.setContentHuggingPriority(.required,
+                                         for: .vertical)
+        }
         [titleImageView, labelStackView].forEach { containerStackView.addArrangedSubview($0) }
         contentView.addSubview(containerStackView)
 

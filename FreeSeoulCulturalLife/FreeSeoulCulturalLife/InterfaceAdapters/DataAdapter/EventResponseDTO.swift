@@ -18,10 +18,11 @@ struct EventResponseDTO: Decodable {
 }
 
 struct EventInfoDTO: Decodable {
-    let result: [EventDTO]
+    
+    let events: [EventDTO]
     
     enum CodingKeys: String, CodingKey {
         
-        case result = "RESULT"
+        case events = "row"
     }
 }

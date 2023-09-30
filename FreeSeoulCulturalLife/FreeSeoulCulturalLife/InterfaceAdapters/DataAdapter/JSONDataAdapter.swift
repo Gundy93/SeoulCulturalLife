@@ -22,11 +22,9 @@ struct JSONDataAdapter: DataAdapter {
     }
     
     private func decode(_ data: Data) -> [EventDTO] {
-        guard let decodedData = try? decoder.decode(EventResponseDTO.self, from: data) else {
-            return []
-        }
+        guard let decodedData = try? decoder.decode(EventResponseDTO.self, from: data) else { return [] }
         
-        return decodedData.culturalEventInfo.result
+        return decodedData.culturalEventInfo.events
     }
     
     private func toDomain(_ data: EventDTO) -> Event {

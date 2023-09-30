@@ -23,9 +23,11 @@ final class ListViewController: UIViewController {
         return tableView
     }()
     private var listDataSource: ListDataSource?
+    private let networkManager: NetworkManager
     
-    init(viewModel: ViewModel) {
+    init(viewModel: ViewModel, networkManager: NetworkManager) {
         self.viewModel = viewModel
+        self.networkManager = networkManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,6 +45,7 @@ final class ListViewController: UIViewController {
         configureTableView()
         configureDataSource()
         addObserver()
+        fetchNewEvents()
     }
     
     private func configurePresentStyle() {
@@ -113,20 +116,29 @@ final class ListViewController: UIViewController {
     @objc
     private func setSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event] else { return }
-        var snapshot = ListSnapshot()
-        
-        snapshot.appendSections([0])
-        snapshot.appendItems(events)
-        listDataSource?.apply(snapshot)
+        DispatchQueue.main.async { [weak self] in
+            var snapshot = ListSnapshot()
+            
+            snapshot.appendSections([0])
+            snapshot.appendItems(events)
+            self?.listDataSource?.apply(snapshot)
+        }
     }
     
     @objc
     private func addItemsToSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event],
               var snapshot = listDataSource?.snapshot() else { return }
-        
-        snapshot.appendItems(events)
-        listDataSource?.apply(snapshot)
+        DispatchQueue.main.async { [weak self] in
+            snapshot.appendItems(events)
+            self?.listDataSource?.apply(snapshot)
+        }
+    }
+    
+    private func fetchNewEvents() {
+        Task {
+            await networkManager.loadNewData(viewModel.category)
+        }
     }
 }
 

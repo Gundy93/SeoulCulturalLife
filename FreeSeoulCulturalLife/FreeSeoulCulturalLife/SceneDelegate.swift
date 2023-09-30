@@ -18,7 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: ListViewController(viewModel: ListViewModel(useCase: ListUseCase())))
+        let useCase = ListUseCase()
+        let listViewmodel = ListViewModel(useCase: useCase) 
+        let jsonAdapter = JSONDataAdapter(useCase: useCase)
+        let networkManager = NetworkManager(dataAdapter: jsonAdapter)
+        let listViewController = ListViewController(viewModel: listViewmodel,
+                                                    networkManager: networkManager)
+        window?.rootViewController = UINavigationController(rootViewController: listViewController)
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }
