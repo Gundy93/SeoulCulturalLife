@@ -117,6 +117,10 @@ final class ListViewController: UIViewController {
                                                selector: #selector(addItemsToSnapshot),
                                                name: GlobalConstant.additionPostName,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(fetchNewEvents),
+                                               name: GlobalConstant.categoryPostName,
+                                               object: nil)
     }
     
     @objc
@@ -137,10 +141,13 @@ final class ListViewController: UIViewController {
     private func addItemsToSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event],
               var snapshot = listDataSource?.snapshot() else { return }
-        DispatchQueue.main.async { [weak self] in
-            snapshot.appendItems(events)
-            self?.listDataSource?.apply(snapshot)
-            self?.isLoaded = true
+        
+        if events.isEmpty == false {
+            DispatchQueue.main.async { [weak self] in
+                snapshot.appendItems(events)
+                self?.listDataSource?.apply(snapshot)
+                self?.isLoaded = true
+            }
         }
     }
     
@@ -152,6 +159,7 @@ final class ListViewController: UIViewController {
         }
     }
     
+    @objc
     private func fetchNewEvents() {
         Task {
             await networkManager.loadNewData(viewModel.category)
