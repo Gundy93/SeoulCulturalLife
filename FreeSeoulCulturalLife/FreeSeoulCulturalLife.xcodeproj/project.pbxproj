@@ -36,6 +36,7 @@
 		BF48DD602AC7BD83000CEFD6 /* EventAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD5F2AC7BD83000CEFD6 /* EventAPIProvider.swift */; };
 		BF48DD642AC7BF37000CEFD6 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD632AC7BF37000CEFD6 /* NetworkingError.swift */; };
 		BF48DD662AC7C002000CEFD6 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD652AC7C002000CEFD6 /* DataFetcher.swift */; };
+		BF48DD682AC7C38B000CEFD6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD672AC7C38B000CEFD6 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		BF48DD5F2AC7BD83000CEFD6 /* EventAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIProvider.swift; sourceTree = "<group>"; };
 		BF48DD632AC7BF37000CEFD6 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		BF48DD652AC7C002000CEFD6 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		BF48DD672AC7C38B000CEFD6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				BF48DD5F2AC7BD83000CEFD6 /* EventAPIProvider.swift */,
 				BF48DD632AC7BF37000CEFD6 /* NetworkingError.swift */,
 				BF48DD652AC7C002000CEFD6 /* DataFetcher.swift */,
+				BF48DD672AC7C38B000CEFD6 /* NetworkManager.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				BF48DD0C2AC11D25000CEFD6 /* Gu.swift in Sources */,
 				BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */,
 				BF48DD532AC7B068000CEFD6 /* EventDTO.swift in Sources */,
+				BF48DD682AC7C38B000CEFD6 /* NetworkManager.swift in Sources */,
 				BF48DD332AC2C73E000CEFD6 /* ViewModel.swift in Sources */,
 				BF48DD302AC2C635000CEFD6 /* GlobalConstant.swift in Sources */,
 				BF48DD602AC7BD83000CEFD6 /* EventAPIProvider.swift in Sources */,
