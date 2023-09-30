@@ -24,6 +24,7 @@ final class ListViewController: UIViewController {
     }()
     private var listDataSource: ListDataSource?
     private let networkManager: NetworkManager
+    private var isLoaded: Bool = false
     
     init(viewModel: ViewModel, networkManager: NetworkManager) {
         self.viewModel = viewModel
@@ -122,6 +123,7 @@ final class ListViewController: UIViewController {
             snapshot.appendSections([0])
             snapshot.appendItems(events)
             self?.listDataSource?.apply(snapshot)
+            self?.isLoaded = true
         }
     }
     
@@ -132,6 +134,7 @@ final class ListViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             snapshot.appendItems(events)
             self?.listDataSource?.apply(snapshot)
+            self?.isLoaded = true
         }
     }
     
@@ -140,9 +143,25 @@ final class ListViewController: UIViewController {
             await networkManager.loadNewData(viewModel.category)
         }
     }
+    
+    private func fetchMoreEvents() {
+        Task {
+            await networkManager.loadMoreData(viewModel.category)
+        }
+    }
 }
 
-extension ListViewController: UITableViewDelegate {}
+extension ListViewController: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard isLoaded else { return }
+        if scrollView.contentOffset.y > scrollView.contentSize.height - (scrollView.bounds.height * 2) {
+            
+            isLoaded = false
+            fetchMoreEvents()
+        }
+    }
+}
 
 extension ListViewController {
     
