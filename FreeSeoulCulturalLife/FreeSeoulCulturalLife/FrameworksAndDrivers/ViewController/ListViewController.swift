@@ -130,9 +130,8 @@ final class ListViewController: UIViewController {
             var snapshot = ListSnapshot()
             
             snapshot.appendSections([0])
-            snapshot.appendItems(events)
-            self?.listDataSource?.apply(snapshot)
-            self?.isLoaded = true
+            self?.completeFetching(snapshot: snapshot,
+                                   events: events)
             self?.refreshControl.endRefreshing()
         }
     }
@@ -140,13 +139,12 @@ final class ListViewController: UIViewController {
     @objc
     private func addItemsToSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event],
-              var snapshot = listDataSource?.snapshot() else { return }
+              let snapshot = listDataSource?.snapshot() else { return }
         
         if events.isEmpty == false {
             DispatchQueue.main.async { [weak self] in
-                snapshot.appendItems(events)
-                self?.listDataSource?.apply(snapshot)
-                self?.isLoaded = true
+                self?.completeFetching(snapshot: snapshot,
+                                       events: events)
             }
         }
     }
@@ -170,6 +168,23 @@ final class ListViewController: UIViewController {
         Task {
             await networkManager.loadMoreData(viewModel.category)
         }
+    }
+    
+    private func completeFetching(snapshot: ListSnapshot, events: [Event]) {
+        var snapshot = snapshot
+        
+        snapshot.appendItems(events)
+        listDataSource?.apply(snapshot)
+        isLoaded = true
+        fetchMoreIfNeeded()
+    }
+    
+    private func fetchMoreIfNeeded() {
+        guard listTableView.contentSize.height < listTableView.bounds.height * 2,
+              isLoaded else { return }
+        
+        isLoaded = false
+        fetchMoreEvents()
     }
 }
 
