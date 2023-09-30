@@ -12,7 +12,7 @@ struct Event: Hashable {
     let title: String
     let category: Category
     let gu: Gu?
-    let imageLink: URL
+    let imageLink: URL?
     let startDate: Date
     let endDate: Date
     let place: String
