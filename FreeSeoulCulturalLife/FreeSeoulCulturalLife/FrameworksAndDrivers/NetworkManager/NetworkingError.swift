@@ -8,7 +8,5 @@
 enum NetworkingError: Error {
     
     case invalidURL
-    case unknownError
     case responseError
-    case invalidData
 }
