@@ -25,6 +25,7 @@ final class ListViewController: UIViewController {
     private var listDataSource: ListDataSource?
     private let networkManager: NetworkManager
     private var isLoaded: Bool = false
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
     
     init(viewModel: ViewModel, networkManager: NetworkManager) {
         self.viewModel = viewModel
@@ -85,6 +86,10 @@ final class ListViewController: UIViewController {
     
     private func configureTableView() {
         listTableView.delegate = self
+        listTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self,
+                                 action: #selector(refresh),
+                                 for: .valueChanged)
     }
     
     private func configureDataSource() {
@@ -124,6 +129,7 @@ final class ListViewController: UIViewController {
             snapshot.appendItems(events)
             self?.listDataSource?.apply(snapshot)
             self?.isLoaded = true
+            self?.refreshControl.endRefreshing()
         }
     }
     
@@ -135,6 +141,14 @@ final class ListViewController: UIViewController {
             snapshot.appendItems(events)
             self?.listDataSource?.apply(snapshot)
             self?.isLoaded = true
+        }
+    }
+    
+    @objc
+    private func refresh() {
+        isLoaded = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.fetchNewEvents()
         }
     }
     
