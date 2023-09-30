@@ -58,9 +58,15 @@ final class ListCell: UITableViewCell {
         dateLabel.text = date
     }
     
-    func setTitleImage(_ image: UIImage) {
-        DispatchQueue.main.async { [weak self] in
+    func setTitleImage(image: UIImage?, title: String) {
+        Task { [weak self] in
+            guard self?.titleLabel.text == title else { return }
+            
             self?.titleImageView.image = image
         }
+    }
+    
+    func removeImage() {
+        titleImageView.image = nil
     }
 }

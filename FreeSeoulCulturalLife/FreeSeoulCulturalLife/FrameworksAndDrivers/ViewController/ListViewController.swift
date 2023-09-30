@@ -102,10 +102,21 @@ final class ListViewController: UIViewController {
             let endDate: String = DateFormatter.shared.string(from: event.endDate)
             let dateText = startDate == endDate ? startDate : "\(startDate) ~ \(endDate)"
             
+            cell.removeImage()
             cell.setText(title: event.title, date: dateText)
+            Task { [weak self] in
+                cell.setTitleImage(image: await self?.loadImage(url: event.imageLink),
+                                   title: event.title) 
+            }
             
             return cell
         }
+    }
+    
+    private func loadImage(url: URL?) async -> UIImage? {
+        guard let data = await networkManager.fetchData(from: url) else { return nil }
+        
+        return UIImage(data: data)
     }
     
     private func addObserver() {
@@ -126,7 +137,7 @@ final class ListViewController: UIViewController {
     @objc
     private func setSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event] else { return }
-        DispatchQueue.main.async { [weak self] in
+        Task { [weak self] in
             var snapshot = ListSnapshot()
             
             snapshot.appendSections([0])
@@ -142,7 +153,7 @@ final class ListViewController: UIViewController {
               let snapshot = listDataSource?.snapshot() else { return }
         
         if events.isEmpty == false {
-            DispatchQueue.main.async { [weak self] in
+            Task { [weak self] in
                 self?.completeFetching(snapshot: snapshot,
                                        events: events)
             }
@@ -152,7 +163,8 @@ final class ListViewController: UIViewController {
     @objc
     private func refresh() {
         isLoaded = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        Task { [weak self] in
+            try await Task.sleep(until: .now + .seconds(0.5))
             self?.fetchNewEvents()
         }
     }

@@ -42,4 +42,8 @@ class NetworkManager {
             print(error.localizedDescription)
         }
     }
+    
+    func fetchData(from url: URL?) async -> Data? {
+        return try? await fetcher.fetchData(url: url)
+    }
 }
