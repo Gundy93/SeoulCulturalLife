@@ -34,6 +34,7 @@
 		BF48DD5B2AC7BA9B000CEFD6 /* EventResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */; };
 		BF48DD5E2AC7BD0A000CEFD6 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD5D2AC7BD0A000CEFD6 /* APIProvider.swift */; };
 		BF48DD602AC7BD83000CEFD6 /* EventAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD5F2AC7BD83000CEFD6 /* EventAPIProvider.swift */; };
+		BF48DD642AC7BF37000CEFD6 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD632AC7BF37000CEFD6 /* NetworkingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponseDTO.swift; sourceTree = "<group>"; };
 		BF48DD5D2AC7BD0A000CEFD6 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		BF48DD5F2AC7BD83000CEFD6 /* EventAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIProvider.swift; sourceTree = "<group>"; };
+		BF48DD632AC7BF37000CEFD6 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			children = (
 				BF48DD5D2AC7BD0A000CEFD6 /* APIProvider.swift */,
 				BF48DD5F2AC7BD83000CEFD6 /* EventAPIProvider.swift */,
+				BF48DD632AC7BF37000CEFD6 /* NetworkingError.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				BF48DD242AC1CAFD000CEFD6 /* ScrapUseCase.swift in Sources */,
 				BF48DD422AC3E58A000CEFD6 /* UILabel+.swift in Sources */,
 				BF48DD382AC31F90000CEFD6 /* ListViewModel.swift in Sources */,
+				BF48DD642AC7BF37000CEFD6 /* NetworkingError.swift in Sources */,
 				BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */,
 				BF48DD1E2AC1B650000CEFD6 /* UseCase.swift in Sources */,
 				BF48DD492AC429E1000CEFD6 /* UIButton+.swift in Sources */,
