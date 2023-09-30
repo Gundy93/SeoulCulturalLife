@@ -11,22 +11,22 @@ protocol DataAdapter {
     
     var useCase: UseCase { get }
     
-    func convertToDomain(_ data: DataType) -> Event
-    func setDatas(_ datas: [DataType])
-    func addDatas(_ datas: [DataType])
+    func convertToDomain(_ data: DataType) -> [Event]
+    func setDatas(_ datas: DataType)
+    func addDatas(_ datas: DataType)
 }
 
 extension DataAdapter {
     
-    func setDatas(_ datas: [DataType]) {
-        let domainDatas = datas.map(convertToDomain)
+    func setDatas(_ datas: DataType) {
+        let domainDatas = convertToDomain(datas)
         
         useCase.setContainer(domainDatas)
     }
     
-    func addDatas(_ datas: [DataType]) {
+    func addDatas(_ datas: DataType) {
         
-        let domainDatas = datas.map(convertToDomain)
+        let domainDatas = convertToDomain(datas)
         
         useCase.appendEvents(domainDatas)
     }

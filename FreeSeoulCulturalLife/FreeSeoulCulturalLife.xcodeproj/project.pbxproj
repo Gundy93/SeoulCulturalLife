@@ -31,6 +31,7 @@
 		BF48DD4C2AC7AAF1000CEFD6 /* DataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD4B2AC7AAF1000CEFD6 /* DataAdapter.swift */; };
 		BF48DD532AC7B068000CEFD6 /* EventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD522AC7B068000CEFD6 /* EventDTO.swift */; };
 		BF48DD552AC7B3B6000CEFD6 /* JSONDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD542AC7B3B6000CEFD6 /* JSONDataAdapter.swift */; };
+		BF48DD5B2AC7BA9B000CEFD6 /* EventResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		BF48DD4B2AC7AAF1000CEFD6 /* DataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAdapter.swift; sourceTree = "<group>"; };
 		BF48DD522AC7B068000CEFD6 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
 		BF48DD542AC7B3B6000CEFD6 /* JSONDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDataAdapter.swift; sourceTree = "<group>"; };
+		BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponseDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 			children = (
 				BF48DD4B2AC7AAF1000CEFD6 /* DataAdapter.swift */,
 				BF48DD522AC7B068000CEFD6 /* EventDTO.swift */,
+				BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */,
 				BF48DD542AC7B3B6000CEFD6 /* JSONDataAdapter.swift */,
 			);
 			path = DataAdapter;
@@ -296,6 +299,7 @@
 				BF48DD472AC4155D000CEFD6 /* FilterViewController.swift in Sources */,
 				BF48DD552AC7B3B6000CEFD6 /* JSONDataAdapter.swift in Sources */,
 				BF48DD0E2AC156A1000CEFD6 /* Event.swift in Sources */,
+				BF48DD5B2AC7BA9B000CEFD6 /* EventResponseDTO.swift in Sources */,
 				BF48DD0C2AC11D25000CEFD6 /* Gu.swift in Sources */,
 				BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */,
 				BF48DD532AC7B068000CEFD6 /* EventDTO.swift in Sources */,

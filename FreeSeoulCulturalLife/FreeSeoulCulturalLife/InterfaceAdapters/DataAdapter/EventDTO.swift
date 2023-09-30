@@ -24,6 +24,7 @@ struct EventDTO: Decodable {
     let description: String?
     
     enum CodingKeys: String, CodingKey {
+        
         case title = "TITLE"
         case category = "CODENAME"
         case gu = "GUNAME"
