@@ -114,9 +114,19 @@ final class ListViewController: UIViewController {
     }
     
     private func loadImage(url: URL?) async -> UIImage? {
-        guard let data = await networkManager.fetchData(from: url) else { return nil }
+        guard let urlString = url?.absoluteString else { return nil }
         
-        return UIImage(data: data)
+        let key = NSString(string: urlString)
+        if let cachedImage = UIImage.cache.object(forKey: key) {
+            return cachedImage
+        }
+        
+        guard let data = await networkManager.fetchData(from: url),
+              let image = UIImage(data: data) else { return nil }
+        
+        UIImage.cache.setObject(image, forKey: key)
+        
+        return image
     }
     
     private func addObserver() {
