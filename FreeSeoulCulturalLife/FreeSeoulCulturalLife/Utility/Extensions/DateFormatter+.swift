@@ -16,4 +16,12 @@ extension DateFormatter {
         
         return formatter
     }()
+    
+    func dateString(_ start: Date, _ end: Date) -> String {
+        let startDate: String = DateFormatter.shared.string(from: start)
+        let endDate: String = DateFormatter.shared.string(from: end)
+        let dateText = startDate == endDate ? startDate : "\(startDate) ~ \(endDate)"
+        
+        return dateText
+    }
 }

@@ -9,14 +9,9 @@ import UIKit
 
 extension UIButton {
     
-    convenience init(primaryAction: UIAction?,
-                     image: UIImage?) {
+    convenience init(primaryAction: UIAction?, image: UIImage? = nil, title: String? = nil) {
         self.init(primaryAction: primaryAction)
         setImage(image, for: .normal)
-    }
-    
-    convenience init(title: String) {
-        self.init()
-        titleLabel?.text = title
+        setTitle(title, for: .normal)
     }
 }

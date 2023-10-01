@@ -98,9 +98,8 @@ final class ListViewController: UIViewController {
                                                            for: indexPath) as? ListCell else {
                 return ListCell()
             }
-            let startDate: String = DateFormatter.shared.string(from: event.startDate)
-            let endDate: String = DateFormatter.shared.string(from: event.endDate)
-            let dateText = startDate == endDate ? startDate : "\(startDate) ~ \(endDate)"
+            let dateText = DateFormatter.shared.dateString(event.startDate,
+                                                           event.endDate)
             
             cell.removeImage()
             cell.setText(title: event.title, date: dateText)
