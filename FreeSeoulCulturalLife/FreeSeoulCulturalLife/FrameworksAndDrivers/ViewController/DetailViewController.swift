@@ -10,31 +10,40 @@ import SafariServices
 
 final class DetailViewController: UIViewController {
     
-    private let titleLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .largeTitle))
+    private let titleLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .title1))
     private let titleImageView: UIImageView = UIImageView()
-    private let categoryStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.category)],
+    private let categoryStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.category,
+                                                                                        font: .boldSystemFont(ofSize: 20))],
                                                              spacing: 16,
                                                              axis: .horizontal)
-    private let dateStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.date)],
+    private let dateStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.date,
+                                                                                    font: .boldSystemFont(ofSize: 20))],
                                                          spacing: 16,
                                                          axis: .horizontal)
-    private let placeStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.place)],
+    private let placeStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.place,
+                                                                                     font: .boldSystemFont(ofSize: 20))],
                                                           spacing: 16,
                                                           axis: .horizontal)
-    private let targetStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.target)],
+    private let targetStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.target,
+                                                                                      font: .boldSystemFont(ofSize: 20))],
                                                            spacing: 16,
                                                            axis: .horizontal)
-    private let linkStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.link)],
+    private let linkStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.link,
+                                                                                    font: .boldSystemFont(ofSize: 20))],
                                                          spacing: 16,
                                                          axis: .horizontal)
-    private let containerStackView: UIStackView = UIStackView(spacing: 8,
-                                                              axis: .vertical)
+    private let containerStackView: UIStackView = UIStackView(spacing: 16,
+                                                              axis: .vertical,
+                                                              alignment: .leading)
+    private let scrollView: UIScrollView = UIScrollView()
     private let event: Event
     
     init(event: Event) {
         self.event = event
         
         super.init(nibName: nil, bundle: nil)
+        
+        view.backgroundColor = .systemBackground
     }
     
     @available(*, unavailable)
@@ -45,14 +54,20 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBar()
         configureViewHierarchy()
         configureButtons()
         configureTextContents()
         configureImage()
     }
     
+    private func configureNavigationBar() {
+        navigationItem.title = Constant.navigationTitle
+    }
+    
     private func configureViewHierarchy() {
         let safeArea = view.safeAreaLayoutGuide
+        let contentLayout = scrollView.contentLayoutGuide
         
         [titleLabel, titleImageView].forEach {
             containerStackView.addArrangedSubview($0)
@@ -62,12 +77,26 @@ final class DetailViewController: UIViewController {
             $0.arrangedSubviews.first?.setContentHuggingPriority(.required,
                                                                  for: .horizontal)
         }
-        view.addSubview(containerStackView)
+        scrollView.addSubview(containerStackView)
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
-            containerStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -20),
-            containerStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            containerStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16)
+            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor,
+                                            constant: 20),
+            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor,
+                                               constant: -20),
+            scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor,
+                                                constant: 16),
+            scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor,
+                                                 constant: -16),
+            contentLayout.widthAnchor.constraint(equalTo: view.widthAnchor,
+                                                 constant: -32),
+            titleImageView.heightAnchor.constraint(equalTo: safeArea.heightAnchor,
+                                                   multiplier: 0.7),
+            containerStackView.topAnchor.constraint(equalTo: contentLayout.topAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: contentLayout.bottomAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: contentLayout.leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: contentLayout.trailingAnchor)
         ])
     }
     
@@ -75,41 +104,54 @@ final class DetailViewController: UIViewController {
         let portalLinkButton = UIButton(primaryAction: makeHyperLinkAction(event.portal),
                                         title: Constant.portal)
         
+        portalLinkButton.titleLabel?.font = .systemFont(ofSize: 17)
         linkStackView.addArrangedSubview(portalLinkButton)
         
         if let homePage = event.homePage {
             let homePageButton = UIButton(primaryAction: makeHyperLinkAction(homePage),
                                           title: Constant.homePage)
             
-            containerStackView.addArrangedSubview(homePageButton)
-            homePageButton.leadingAnchor.constraint(equalTo: portalLinkButton.leadingAnchor).isActive = true
+            homePageButton.titleLabel?.font = .systemFont(ofSize: 17)
+            linkStackView.addArrangedSubview(homePageButton)
         }
     }
     
     private func configureTextContents() {
         titleLabel.text = event.title
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byCharWrapping
         categoryStackView.addArrangedSubview(UILabel(text: event.category.rawValue))
         dateStackView.addArrangedSubview(UILabel(text: DateFormatter.shared.dateString(event.startDate,
                                                                                        event.endDate)))
         placeStackView.addArrangedSubview(UILabel(text: event.place))
         targetStackView.addArrangedSubview(UILabel(text: event.useTarget))
         
-        if let player = event.player {
+        if event.player != nil {
             addPlayerStackView()
         }
         if let program = event.program {
-            containerStackView.addArrangedSubview(UILabel(text: event.program))
+            let programLabel = UILabel(text: program)
+            
+            programLabel.numberOfLines = 0
+            containerStackView.addArrangedSubview(programLabel)
         }
         if let description = event.description {
-            containerStackView.addArrangedSubview(UILabel(text: event.description))
+            let descriptionLabel = UILabel(text: description)
+            
+            descriptionLabel.numberOfLines = 0
+            containerStackView.addArrangedSubview(descriptionLabel)
         }
     }
     
     private func addPlayerStackView() {
         let playerStackView: UIStackView = UIStackView(spacing: 16,
                                                        axis: .horizontal)
+        let playerLabel =  UILabel(text: event.player)
         
-        [UILabel(text: Constant.player), UILabel(text: event.player)].forEach {
+        playerLabel.numberOfLines = 0
+        [UILabel(text: Constant.player,
+                 font: .boldSystemFont(ofSize: 20)),
+         playerLabel].forEach {
             playerStackView.addArrangedSubview($0)
         }
         containerStackView.addArrangedSubview(playerStackView)
@@ -122,6 +164,7 @@ final class DetailViewController: UIViewController {
         if let cachedImage = UIImage.cache.object(forKey: key) {
             Task {
                 titleImageView.image = cachedImage
+                titleImageView.contentMode = .scaleAspectFit
             }
         } else {
             Task {
@@ -156,5 +199,6 @@ extension DetailViewController {
         static let portal: String = "문화포털"
         static let homePage: String = "홈페이지"
         static let player: String = "출연자"
+        static let navigationTitle: String = "상세 정보"
     }
 }

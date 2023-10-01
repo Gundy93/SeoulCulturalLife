@@ -219,6 +219,15 @@ extension ListViewController: UITableViewDelegate {
             fetchMoreEvents()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let event = listDataSource?.itemIdentifier(for: indexPath) else { return }
+        
+        let detailViewController = DetailViewController(event: event)
+        
+        navigationController?.pushViewController(detailViewController,
+                                                 animated: true)
+    }
 }
 
 extension ListViewController {
