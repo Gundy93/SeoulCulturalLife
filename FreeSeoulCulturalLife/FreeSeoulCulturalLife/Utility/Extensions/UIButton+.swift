@@ -14,4 +14,9 @@ extension UIButton {
         self.init(primaryAction: primaryAction)
         setImage(image, for: .normal)
     }
+    
+    convenience init(title: String) {
+        self.init()
+        titleLabel?.text = title
+    }
 }
