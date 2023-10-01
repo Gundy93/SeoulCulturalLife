@@ -10,7 +10,8 @@ import SafariServices
 
 final class DetailViewController: UIViewController {
     
-    private let titleLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .title1))
+    private let titleLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .title1),
+                                              numberOfLines: 0)
     private let titleImageView: UIImageView = UIImageView()
     private let categoryStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.category,
                                                                                         font: .boldSystemFont(ofSize: 20))],
@@ -118,37 +119,41 @@ final class DetailViewController: UIViewController {
     
     private func configureTextContents() {
         titleLabel.text = event.title
-        titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byCharWrapping
         categoryStackView.addArrangedSubview(UILabel(text: event.category.rawValue))
         dateStackView.addArrangedSubview(UILabel(text: DateFormatter.shared.dateString(event.startDate,
                                                                                        event.endDate)))
-        placeStackView.addArrangedSubview(UILabel(text: event.place))
-        targetStackView.addArrangedSubview(UILabel(text: event.useTarget))
+        placeStackView.addArrangedSubview(UILabel(text: event.place,
+                                                  numberOfLines: 0))
+        targetStackView.addArrangedSubview(UILabel(text: event.useTarget,
+                                                   numberOfLines: 0))
         
         if event.player != nil {
             addPlayerStackView()
         }
         if let program = event.program {
-            let programLabel = UILabel(text: program)
+            let programLabel = UILabel(text: program,
+                                       numberOfLines: 0)
             
-            programLabel.numberOfLines = 0
             containerStackView.addArrangedSubview(programLabel)
         }
         if let description = event.description {
-            let descriptionLabel = UILabel(text: description)
+            let descriptionLabel = UILabel(text: description,
+                                           numberOfLines: 0)
             
-            descriptionLabel.numberOfLines = 0
             containerStackView.addArrangedSubview(descriptionLabel)
         }
     }
     
     private func addPlayerStackView() {
+        guard let player = event.player,
+              player.isEmpty == false else { return }
+        
         let playerStackView: UIStackView = UIStackView(spacing: 16,
                                                        axis: .horizontal)
-        let playerLabel =  UILabel(text: event.player)
+        let playerLabel =  UILabel(text: player,
+                                   numberOfLines: 0)
         
-        playerLabel.numberOfLines = 0
         [UILabel(text: Constant.player,
                  font: .boldSystemFont(ofSize: 20)),
          playerLabel].forEach {
@@ -198,7 +203,7 @@ extension DetailViewController {
         static let link: String = "링크"
         static let portal: String = "문화포털"
         static let homePage: String = "홈페이지"
-        static let player: String = "출연자"
+        static let player: String = "출연"
         static let navigationTitle: String = "상세 정보"
     }
 }
