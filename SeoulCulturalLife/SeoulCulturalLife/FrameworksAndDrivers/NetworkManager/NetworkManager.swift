@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkManager {
+final class NetworkManager {
     
     private let fetcher: DataFetcher = DataFetcher()
     private let dataAdapter: JSONDataAdapter

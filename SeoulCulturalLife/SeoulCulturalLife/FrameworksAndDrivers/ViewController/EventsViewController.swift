@@ -12,9 +12,11 @@ class EventsViewController: UIViewController {
     typealias EventSnapshot = NSDiffableDataSourceSnapshot<Int, Event>
     
     let viewModel: ViewModel
+    let networkManager: NetworkManager
     
-    init(viewModel: ViewModel) {
+    init(viewModel: ViewModel, networkManager: NetworkManager) {
         self.viewModel = viewModel
+        self.networkManager = networkManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,7 +58,16 @@ class EventsViewController: UIViewController {
         guard let urlString = url?.absoluteString else { return nil }
         let key = NSString(string: urlString)
         
-        return UIImage.cache.object(forKey: key)
+        if let image = UIImage.cache.object(forKey: key) {
+            return image
+        }
+        
+        guard let data = await networkManager.fetchData(from: url),
+              let image = UIImage(data: data) else { return nil }
+        
+        UIImage.cache.setObject(image, forKey: key)
+        
+        return image
     }
 }
 

@@ -21,20 +21,8 @@ final class ListViewController: EventsViewController {
         return tableView
     }()
     private var listDataSource: ListDataSource?
-    private let networkManager: NetworkManager
     private var isLoaded: Bool = false
     private let refreshControl: UIRefreshControl = UIRefreshControl()
-    
-    init(viewModel: ViewModel, networkManager: NetworkManager) {
-        self.networkManager = networkManager
-        
-        super.init(viewModel: viewModel)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,21 +73,6 @@ final class ListViewController: EventsViewController {
             
             return cell
         }
-    }
-    
-    override func loadImage(url: URL?) async -> UIImage? {
-        if let cachedImage = await super.loadImage(url: url) {
-            return cachedImage
-        }
-        
-        guard let data = await networkManager.fetchData(from: url),
-              let image = UIImage(data: data),
-              let urlString = url?.absoluteString else { return nil }
-        let key = NSString(string: urlString)
-        
-        UIImage.cache.setObject(image, forKey: key)
-        
-        return image
     }
     
     private func addObserver() {
