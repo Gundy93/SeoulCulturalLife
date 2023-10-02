@@ -22,4 +22,6 @@ struct Event: Hashable {
     let useTarget: String
     let program: String?
     let description: String?
+    let useFee: String?
+    let isFree: Bool
 }

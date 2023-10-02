@@ -12,6 +12,7 @@ class ViewModel: UseCaseDelegate {
     private var useCase: UseCase
     private(set) var category: Category? = nil
     private(set) var gu: Gu? = nil
+    private(set) var isFree: Bool? = nil
     private(set) var date: Date? = nil
     
     init(useCase: UseCase) {
@@ -30,6 +31,11 @@ class ViewModel: UseCaseDelegate {
         postEvents(useCase.container, name: GlobalConstant.defaultPostName)
     }
     
+    func setIsFree(_ isFree: Bool?) {
+        self.isFree = isFree
+        postEvents(useCase.container, name: GlobalConstant.defaultPostName)
+    }
+    
     func setDate(_ date: Date?) {
         self.date = date
         postEvents(useCase.container, name: GlobalConstant.defaultPostName)
@@ -44,6 +50,7 @@ class ViewModel: UseCaseDelegate {
         NotificationCenter.default.post(name: name,
                                         object: useCase.filter(from: events,
                                                                gu: gu,
+                                                               isFree: isFree,
                                                                date: date))
     }
     

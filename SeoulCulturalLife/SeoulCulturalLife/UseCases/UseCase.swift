@@ -12,28 +12,27 @@ protocol UseCase: AnyObject {
     var delegate: UseCaseDelegate? { get set }
     var container: [Event] { get set }
     
-    func filter(from container: [Event], gu: Gu?, date: Date?) -> [Event]
+    func filter(from container: [Event], gu: Gu?, isFree: Bool?, date: Date?) -> [Event]
     func setContainer(_ container: [Event])
     func appendEvents(_ events: [Event])
 }
 
 extension UseCase {
     
-    func filter(from container: [Event], gu: Gu?, date: Date?) -> [Event] {
-        switch (gu, date) {
-        case (nil, nil):
-            return container
-        case (nil, _):
-            guard let date else { return container }
-            return container.filter { $0.startDate <= date && $0.endDate >= date }
-        case (_, nil):
-            guard let gu else { return container }
-            return container.filter { $0.gu == gu }
-        default:
-            guard let gu,
-                  let date else { return container }
-            return container.filter { $0.gu == gu && $0.startDate <= date && $0.endDate >= date }
+    func filter(from container: [Event], gu: Gu?, isFree: Bool?, date: Date?) -> [Event] {
+        var container = container
+        
+        if let gu {
+            container = container.filter { $0.gu == gu }
         }
+        if let isFree {
+            container = container.filter { $0.isFree == isFree }
+        }
+        if let date {
+            container = container.filter { $0.startDate <= date && $0.endDate >= date }
+        }
+        
+        return container
     }
     
     func setContainer(_ container: [Event]) {

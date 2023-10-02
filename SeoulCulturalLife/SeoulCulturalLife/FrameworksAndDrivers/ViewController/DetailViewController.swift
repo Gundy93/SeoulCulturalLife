@@ -29,6 +29,10 @@ final class DetailViewController: UIViewController {
                                                                                       font: .boldSystemFont(ofSize: 20))],
                                                            spacing: 16,
                                                            axis: .horizontal)
+    private let feeStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.fee,
+                                                                                   font: .boldSystemFont(ofSize: 20))],
+                                                        spacing: 16,
+                                                        axis: .horizontal)
     private let linkStackView: UIStackView = UIStackView(arrangedSubviews: [UILabel(text: Constant.link,
                                                                                     font: .boldSystemFont(ofSize: 20))],
                                                          spacing: 16,
@@ -38,6 +42,13 @@ final class DetailViewController: UIViewController {
                                                               alignment: .leading)
     private let scrollView: UIScrollView = UIScrollView()
     private let event: Event
+    private var useFee: String? {
+        if let useFee = event.useFee, useFee.isEmpty == false {
+            return event.useFee
+        } else {
+            return event.isFree ? Constant.free : Constant.notFree
+        }
+    }
     
     init(event: Event) {
         self.event = event
@@ -73,7 +84,7 @@ final class DetailViewController: UIViewController {
         [titleLabel, titleImageView].forEach {
             containerStackView.addArrangedSubview($0)
         }
-        [categoryStackView, dateStackView, placeStackView, targetStackView, linkStackView].forEach {
+        [categoryStackView, dateStackView, placeStackView, targetStackView, feeStackView, linkStackView].forEach {
             containerStackView.addArrangedSubview($0)
             $0.arrangedSubviews.first?.setContentHuggingPriority(.required,
                                                                  for: .horizontal)
@@ -127,6 +138,8 @@ final class DetailViewController: UIViewController {
                                                   numberOfLines: 0))
         targetStackView.addArrangedSubview(UILabel(text: event.useTarget,
                                                    numberOfLines: 0))
+        feeStackView.addArrangedSubview(UILabel(text: useFee,
+                                                numberOfLines: 0))
         
         if event.player != nil {
             addPlayerStackView()
@@ -200,10 +213,13 @@ extension DetailViewController {
         static let date: String = "날짜"
         static let place: String = "장소"
         static let target: String = "이용대상"
+        static let fee: String = "이용요금"
         static let link: String = "링크"
         static let portal: String = "문화포털"
         static let homePage: String = "홈페이지"
         static let player: String = "출연"
         static let navigationTitle: String = "상세 정보"
+        static let free: String = "무료"
+        static let notFree: String = "유료"
     }
 }

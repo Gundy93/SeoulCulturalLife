@@ -22,6 +22,8 @@ struct EventDTO: Decodable {
     let useTarget: String
     let program: String?
     let description: String?
+    let useFee: String?
+    let isFree: String
     
     enum CodingKeys: String, CodingKey {
         
@@ -38,5 +40,7 @@ struct EventDTO: Decodable {
         case useTarget = "USE_TRGT"
         case program = "PROGRAM"
         case description = "ETC_DESC"
+        case useFee = "USE_FEE"
+        case isFree = "IS_FREE"
     }
 }

@@ -29,8 +29,8 @@ struct JSONDataAdapter: DataAdapter {
     
     private func toDomain(_ data: EventDTO) -> Event {
         let category: Category = Category(rawValue: data.category) ?? .etc
-        let startDate = DateFormatter.shared.date(from: String(data.startDate.split(separator: " ")[0])) ?? Date()
-        let endDate = DateFormatter.shared.date(from: String(data.endDate.split(separator: " ")[0])) ?? Date()
+        let startDate = DateFormatter.shared.date(from: String(data.startDate.split(separator: Constant.space)[0])) ?? Date()
+        let endDate = DateFormatter.shared.date(from: String(data.endDate.split(separator: Constant.space)[0])) ?? Date()
         let event: Event = Event(title: data.title,
                                  category: category,
                                  gu: Gu(rawValue: data.gu ?? String()),
@@ -43,8 +43,19 @@ struct JSONDataAdapter: DataAdapter {
                                  player: data.player,
                                  useTarget: data.useTarget,
                                  program: data.program,
-                                 description: data.description)
+                                 description: data.description,
+                                 useFee: data.useFee,
+                                 isFree: data.isFree == Constant.free)
         
         return event
+    }
+}
+
+extension JSONDataAdapter {
+    
+    enum Constant {
+        
+        static let space: String = " "
+        static let free: String = "무료"
     }
 }

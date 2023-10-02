@@ -24,6 +24,11 @@ final class FilterViewController: UIViewController {
     let guLabel: UILabel = UILabel()
     let guButton: UIButton = UIButton(primaryAction: nil,
                                       image: UIImage(systemName: Constant.buttonImageName))
+    let feeStackView: UIStackView = UIStackView(axis: .horizontal)
+    let feeHeaderLabel: UILabel = UILabel(text: Constant.feeHeaderText,
+                                         font: .systemFont(ofSize: 20,
+                                                           weight: .bold))
+    let feeSegmentedControl: UISegmentedControl = UISegmentedControl(items: [Constant.notSelected, Constant.notFree, Constant.free])
     let dateStackView: UIStackView = UIStackView(axis: .horizontal)
     let dateHeaderLabel: UILabel = UILabel(text: Constant.dateHeaderText,
                                            font: .systemFont(ofSize: 20,
@@ -40,12 +45,13 @@ final class FilterViewController: UIViewController {
     }()
     let containerStackView: UIStackView = UIStackView(spacing: 20,
                                                       axis: .vertical)
-    var currentFilter: (category: Category?, gu: Gu?, date: Date?)
+    var currentFilter: (category: Category?, gu: Gu?, isFree: Bool?, date: Date?)
     var isDone: Bool = false
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        currentFilter = (viewModel.category, viewModel.gu, viewModel.date)
+        currentFilter = (viewModel.category, viewModel.gu, viewModel.isFree, viewModel.date)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -119,10 +125,13 @@ final class FilterViewController: UIViewController {
         [guHeaderLabel, guLabel, guButton].forEach {
             guStackView.addArrangedSubview($0)
         }
+        [feeHeaderLabel, feeSegmentedControl].forEach {
+            feeStackView.addArrangedSubview($0)
+        }
         [dateHeaderLabel, dateSegmentedControl, datePicker].forEach {
             dateStackView.addArrangedSubview($0)
         }
-        [categoryStackView, guStackView, dateStackView].forEach {
+        [categoryStackView, guStackView, feeStackView, dateStackView].forEach {
             containerStackView.addArrangedSubview($0)
         }
         view.addSubview(containerStackView)
@@ -130,6 +139,7 @@ final class FilterViewController: UIViewController {
             $0.setContentHuggingPriority(.required,
                                          for: .horizontal)
         }
+        feeStackView.setCustomSpacing(40, after: feeHeaderLabel)
         dateStackView.setCustomSpacing(40, after: dateHeaderLabel)
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: safeArea.topAnchor,
@@ -145,10 +155,33 @@ final class FilterViewController: UIViewController {
     }
     
     private func configureSegmentedControl() {
+        feeSegmentedControl.addTarget(self,
+                                      action: #selector(selectIsFree),
+                                      for: .valueChanged)
+        switch currentFilter.isFree {
+        case .none:
+            feeSegmentedControl.selectedSegmentIndex = 0
+        case .some(false):
+            feeSegmentedControl.selectedSegmentIndex = 1
+        case .some(true):
+            feeSegmentedControl.selectedSegmentIndex = 2
+        }
         dateSegmentedControl.addTarget(self,
                                        action: #selector(toggleDatePicker),
                                        for: .valueChanged)
-        dateSegmentedControl.selectedSegmentIndex = viewModel.date == nil ? 0 : 1
+        dateSegmentedControl.selectedSegmentIndex = currentFilter.date == nil ? 0 : 1
+    }
+    
+    @objc
+    private func selectIsFree(_ segmentedControl: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            viewModel.setIsFree(nil)
+        case 1:
+            viewModel.setIsFree(false)
+        default:
+            viewModel.setIsFree(true)
+        }
     }
 
     @objc
@@ -191,6 +224,7 @@ final class FilterViewController: UIViewController {
         
         viewModel.setCategory(currentFilter.category)
         viewModel.setGu(currentFilter.gu)
+        viewModel.setIsFree(currentFilter.isFree)
     }
     
     private func configureCategoryButton() {
@@ -236,7 +270,10 @@ extension FilterViewController {
         
         static let categoryHeaderText: String = "분류"
         static let guHeaderText: String = "구"
+        static let feeHeaderText: String = "요금"
         static let dateHeaderText: String = "날짜"
+        static let notFree: String = "유료"
+        static let free: String = "무료"
         static let notSelected: String = "선택 안 함"
         static let selected: String = "선택"
         static let buttonImageName: String = "chevron.down"
