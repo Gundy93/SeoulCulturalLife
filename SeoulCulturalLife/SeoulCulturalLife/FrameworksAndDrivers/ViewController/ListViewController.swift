@@ -7,12 +7,10 @@
 
 import UIKit
 
-final class ListViewController: UIViewController {
+final class ListViewController: EventsViewController {
     
     typealias ListDataSource = UITableViewDiffableDataSource<Int, Event>
-    typealias ListSnapshot = NSDiffableDataSourceSnapshot<Int, Event>
     
-    private let viewModel: ViewModel
     private let listTableView: UITableView = {
         let tableView = UITableView()
         
@@ -28,10 +26,9 @@ final class ListViewController: UIViewController {
     private let refreshControl: UIRefreshControl = UIRefreshControl()
     
     init(viewModel: ViewModel, networkManager: NetworkManager) {
-        self.viewModel = viewModel
         self.networkManager = networkManager
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(viewModel: viewModel)
     }
     
     @available(*, unavailable)
@@ -42,34 +39,12 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar()
+        configureNavigationBar(Constant.navigationTitle)
         configureViewHierarchy()
         configureTableView()
         configureDataSource()
         addObserver()
         fetchNewEvents()
-    }
-    
-    private func configurePresentStyle() {
-        modalPresentationStyle = .popover
-        view.backgroundColor = .systemBackground
-    }
-    
-    private func configureNavigationBar() {
-        navigationItem.title = Constant.navigationTitle
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.filterActionImageName),
-                                                            primaryAction: presentFilterAction())
-    }
-    
-    private func presentFilterAction() -> UIAction {
-        let action = UIAction() { [weak self] _ in
-            guard let self else { return }
-            let filterViewController = FilterViewController(viewModel: self.viewModel)
-            
-            self.present(UINavigationController(rootViewController: filterViewController), animated: true)
-        }
-        
-        return action
     }
     
     private func configureViewHierarchy() {
@@ -112,16 +87,15 @@ final class ListViewController: UIViewController {
         }
     }
     
-    private func loadImage(url: URL?) async -> UIImage? {
-        guard let urlString = url?.absoluteString else { return nil }
-        
-        let key = NSString(string: urlString)
-        if let cachedImage = UIImage.cache.object(forKey: key) {
+    override func loadImage(url: URL?) async -> UIImage? {
+        if let cachedImage = await super.loadImage(url: url) {
             return cachedImage
         }
         
         guard let data = await networkManager.fetchData(from: url),
-              let image = UIImage(data: data) else { return nil }
+              let image = UIImage(data: data),
+              let urlString = url?.absoluteString else { return nil }
+        let key = NSString(string: urlString)
         
         UIImage.cache.setObject(image, forKey: key)
         
@@ -147,7 +121,7 @@ final class ListViewController: UIViewController {
     private func setSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event] else { return }
         Task { [weak self] in
-            var snapshot = ListSnapshot()
+            var snapshot = EventSnapshot()
             
             snapshot.appendSections([0])
             self?.completeFetching(snapshot: snapshot,
@@ -191,7 +165,7 @@ final class ListViewController: UIViewController {
         }
     }
     
-    private func completeFetching(snapshot: ListSnapshot, events: [Event]) {
+    private func completeFetching(snapshot: EventSnapshot, events: [Event]) {
         var snapshot = snapshot
         
         snapshot.appendItems(events)
@@ -235,7 +209,6 @@ extension ListViewController {
     enum Constant {
         
         static let navigationTitle: String = "목록"
-        static let filterActionImageName: String = "line.3.horizontal.decrease.circle"
         static let ListCellIdentifier: String = "ListCell"
     }
 }
