@@ -21,6 +21,7 @@ final class ScrapViewController: EventsViewController {
         configureCollectionView()
         configureDataSource()
         configureViewHierarchy()
+        addObserver()
     }
     
     private func configureCollectionView() {
@@ -39,13 +40,11 @@ final class ScrapViewController: EventsViewController {
         let provider = {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
+                widthDimension: .fractionalWidth(1/3),
                 heightDimension: .fractionalHeight(1)))
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
-            
             let containerGroup = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                    heightDimension: .fractionalHeight(1/3)),
                 subitems: [item])
             
@@ -88,6 +87,26 @@ final class ScrapViewController: EventsViewController {
             scrapCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             scrapCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setSnapshot),
+                                               name: GlobalConstant.scrapPostName,
+                                               object: nil)
+    }
+    
+    @objc
+    private func setSnapshot(_ notification: Notification) {
+        guard let events = notification.object as? [Event] else { return }
+        
+        Task { [weak self] in
+            var snapshot = EventSnapshot()
+            
+            snapshot.appendSections([0])
+            snapshot.appendItems(events)
+            self?.scrapDataSource?.apply(snapshot)
+        }
     }
 }
 

@@ -10,9 +10,9 @@ import UIKit
 final class ScrapCell: UICollectionViewCell {
     
     private let titleImageView: UIImageView = UIImageView()
-    private let titleLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .title3),
+    private let titleLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .caption1),
                                               textAlignment: .center)
-    private let dateLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .callout),
+    private let dateLabel: UILabel = UILabel(font: .preferredFont(forTextStyle: .caption2),
                                              textAlignment: .center)
     private let containerStackView: UIStackView = UIStackView(spacing: 8,
                                                               axis: .vertical,
@@ -38,8 +38,8 @@ final class ScrapCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
         ])
     }
     
