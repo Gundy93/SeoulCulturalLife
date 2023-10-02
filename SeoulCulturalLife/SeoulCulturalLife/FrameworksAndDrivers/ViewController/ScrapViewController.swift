@@ -110,7 +110,17 @@ final class ScrapViewController: EventsViewController {
     }
 }
 
-extension ScrapViewController: UICollectionViewDelegate {}
+extension ScrapViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let event = scrapDataSource?.itemIdentifier(for: indexPath) else { return }
+        
+        let detailViewController = DetailViewController(event: event)
+        
+        navigationController?.pushViewController(detailViewController,
+                                                 animated: true)
+    }
+}
 
 extension ScrapViewController {
     
