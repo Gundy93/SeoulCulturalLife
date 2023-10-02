@@ -9,7 +9,7 @@ import Foundation
 
 class ViewModel: UseCaseDelegate {
     
-    private var useCase: UseCase
+    private(set) var useCase: UseCase
     private(set) var category: Category? = nil
     private(set) var gu: Gu? = nil
     private(set) var isFree: Bool? = nil
@@ -22,28 +22,20 @@ class ViewModel: UseCaseDelegate {
     
     func setCategory(_ category: Category?) {
         self.category = category
-        postFilters()
+        postFilters(GlobalConstant.filterPostName)
     }
     
     func setGu(_ gu: Gu?) {
         self.gu = gu
-        postFilters()
-        postEvents(useCase.container, name: GlobalConstant.defaultPostName)
+        postFilters(GlobalConstant.filterPostName)
     }
     
     func setIsFree(_ isFree: Bool?) {
         self.isFree = isFree
-        postEvents(useCase.container, name: GlobalConstant.defaultPostName)
     }
     
     func setDate(_ date: Date?) {
         self.date = date
-        postEvents(useCase.container, name: GlobalConstant.defaultPostName)
-    }
-    
-    private func postFilters() {
-        NotificationCenter.default.post(name: GlobalConstant.filterPostName,
-                                        object: (category, gu))
     }
     
     func postEvents(_ events: [Event], name: Notification.Name) {
@@ -54,9 +46,10 @@ class ViewModel: UseCaseDelegate {
                                                                date: date))
     }
     
-    func useCaseDidUpdate(events: [Event]...) {
-        guard let events = events.first else { return }
-        
-        postEvents(events, name: GlobalConstant.defaultPostName)
+    func postFilters(_ name: Notification.Name) {
+        NotificationCenter.default.post(name: name,
+                                        object: (category, gu))
     }
+    
+    func useCaseDidUpdate(events: [Event]...) {}
 }

@@ -16,12 +16,34 @@ final class ListViewModel: ViewModel {
                                         object: nil)
     }
     
+    override func setGu(_ gu: Gu?) {
+        super.setGu(gu)
+        
+        postEvents(useCase.container,
+                   name: GlobalConstant.defaultPostName)
+    }
+    
+    override func setIsFree(_ isFree: Bool?) {
+        super.setIsFree(isFree)
+        
+        postEvents(useCase.container,
+                   name: GlobalConstant.defaultPostName)
+    }
+    
+    override func setDate(_ date: Date?) {
+        super.setDate(date)
+        
+        postEvents(useCase.container,
+                   name: GlobalConstant.defaultPostName)
+    }
+    
     override func useCaseDidUpdate(events: [Event]...) {
         guard events.count > 1,
               let first = events.first,
               let last = events.last else { return }
         let name = first == last ? GlobalConstant.defaultPostName : GlobalConstant.additionPostName
         
-        postEvents(last, name: name)
+        postEvents(last,
+                   name: name)
     }
 }

@@ -39,6 +39,7 @@
 		BF48DD682AC7C38B000CEFD6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD672AC7C38B000CEFD6 /* NetworkManager.swift */; };
 		BF48DD6D2AC7ECD4000CEFD6 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD6C2AC7ECD4000CEFD6 /* UIImage+.swift */; };
 		BF48DD6F2AC903FD000CEFD6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD6E2AC903FD000CEFD6 /* DetailViewController.swift */; };
+		BF6260E42ACABC59006FB50C /* ScrapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		BF48DD672AC7C38B000CEFD6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BF48DD6C2AC7ECD4000CEFD6 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		BF48DD6E2AC903FD000CEFD6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			children = (
 				BF48DD322AC2C73E000CEFD6 /* ViewModel.swift */,
 				BF48DD372AC31F90000CEFD6 /* ListViewModel.swift */,
+				BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				BF48DCF22ABD2FA9000CEFD6 /* ListViewController.swift in Sources */,
 				BF48DCEE2ABD2FA9000CEFD6 /* AppDelegate.swift in Sources */,
 				BF48DCF02ABD2FA9000CEFD6 /* SceneDelegate.swift in Sources */,
+				BF6260E42ACABC59006FB50C /* ScrapViewModel.swift in Sources */,
 				BF48DD452AC3E673000CEFD6 /* ListCell.swift in Sources */,
 				BF48DD472AC4155D000CEFD6 /* FilterViewController.swift in Sources */,
 				BF48DD552AC7B3B6000CEFD6 /* JSONDataAdapter.swift in Sources */,
