@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BF48DCEA2ABD2FA9000CEFD6 /* FreeSeoulCulturalLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeSeoulCulturalLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF48DCEA2ABD2FA9000CEFD6 /* SeoulCulturalLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulCulturalLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF48DCED2ABD2FA9000CEFD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF48DCEF2ABD2FA9000CEFD6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BF48DCF12ABD2FA9000CEFD6 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		BF48DCE12ABD2FA9000CEFD6 = {
 			isa = PBXGroup;
 			children = (
-				BF48DCEC2ABD2FA9000CEFD6 /* FreeSeoulCulturalLife */,
+				BF48DCEC2ABD2FA9000CEFD6 /* SeoulCulturalLife */,
 				BF48DCEB2ABD2FA9000CEFD6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,12 +100,12 @@
 		BF48DCEB2ABD2FA9000CEFD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF48DCEA2ABD2FA9000CEFD6 /* FreeSeoulCulturalLife.app */,
+				BF48DCEA2ABD2FA9000CEFD6 /* SeoulCulturalLife.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF48DCEC2ABD2FA9000CEFD6 /* FreeSeoulCulturalLife */ = {
+		BF48DCEC2ABD2FA9000CEFD6 /* SeoulCulturalLife */ = {
 			isa = PBXGroup;
 			children = (
 				BF48DCED2ABD2FA9000CEFD6 /* AppDelegate.swift */,
@@ -117,7 +117,7 @@
 				BF48DD312AC2C725000CEFD6 /* InterfaceAdapters */,
 				BF48DD3A2AC323C6000CEFD6 /* FrameworksAndDrivers */,
 			);
-			path = FreeSeoulCulturalLife;
+			path = SeoulCulturalLife;
 			sourceTree = "<group>";
 		};
 		BF48DD012ABD304C000CEFD6 /* Resource */ = {
@@ -244,9 +244,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BF48DCE92ABD2FA9000CEFD6 /* FreeSeoulCulturalLife */ = {
+		BF48DCE92ABD2FA9000CEFD6 /* SeoulCulturalLife */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF48DCFE2ABD2FAA000CEFD6 /* Build configuration list for PBXNativeTarget "FreeSeoulCulturalLife" */;
+			buildConfigurationList = BF48DCFE2ABD2FAA000CEFD6 /* Build configuration list for PBXNativeTarget "SeoulCulturalLife" */;
 			buildPhases = (
 				BF48DCE62ABD2FA9000CEFD6 /* Sources */,
 				BF48DCE72ABD2FA9000CEFD6 /* Frameworks */,
@@ -256,9 +256,9 @@
 			);
 			dependencies = (
 			);
-			name = FreeSeoulCulturalLife;
+			name = SeoulCulturalLife;
 			productName = FreeSeoulCulturalLife;
-			productReference = BF48DCEA2ABD2FA9000CEFD6 /* FreeSeoulCulturalLife.app */;
+			productReference = BF48DCEA2ABD2FA9000CEFD6 /* SeoulCulturalLife.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BF48DCE52ABD2FA9000CEFD6 /* Build configuration list for PBXProject "FreeSeoulCulturalLife" */;
+			buildConfigurationList = BF48DCE52ABD2FA9000CEFD6 /* Build configuration list for PBXProject "SeoulCulturalLife" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -289,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BF48DCE92ABD2FA9000CEFD6 /* FreeSeoulCulturalLife */,
+				BF48DCE92ABD2FA9000CEFD6 /* SeoulCulturalLife */,
 			);
 		};
 /* End PBXProject section */
@@ -486,11 +486,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RKG4N9K9YM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FreeSeoulCulturalLife/Resource/Info.plist;
+				INFOPLIST_FILE = SeoulCulturalLife/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,11 +512,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RKG4N9K9YM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FreeSeoulCulturalLife/Resource/Info.plist;
+				INFOPLIST_FILE = SeoulCulturalLife/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,7 +532,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BF48DCE52ABD2FA9000CEFD6 /* Build configuration list for PBXProject "FreeSeoulCulturalLife" */ = {
+		BF48DCE52ABD2FA9000CEFD6 /* Build configuration list for PBXProject "SeoulCulturalLife" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF48DCFC2ABD2FAA000CEFD6 /* Debug */,
@@ -543,7 +541,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF48DCFE2ABD2FAA000CEFD6 /* Build configuration list for PBXNativeTarget "FreeSeoulCulturalLife" */ = {
+		BF48DCFE2ABD2FAA000CEFD6 /* Build configuration list for PBXNativeTarget "SeoulCulturalLife" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF48DCFF2ABD2FAA000CEFD6 /* Debug */,
