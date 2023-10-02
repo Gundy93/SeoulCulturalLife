@@ -41,6 +41,7 @@
 		BF48DD6F2AC903FD000CEFD6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48DD6E2AC903FD000CEFD6 /* DetailViewController.swift */; };
 		BF6260E42ACABC59006FB50C /* ScrapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */; };
 		BF6260E62ACABCD2006FB50C /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E52ACABCD2006FB50C /* EventsViewController.swift */; };
+		BF6260E82ACABFD9006FB50C /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		BF48DD6E2AC903FD000CEFD6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewModel.swift; sourceTree = "<group>"; };
 		BF6260E52ACABCD2006FB50C /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 			children = (
 				BF6260E52ACABCD2006FB50C /* EventsViewController.swift */,
 				BF48DCF12ABD2FA9000CEFD6 /* ListViewController.swift */,
+				BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */,
 				BF48DD462AC4155D000CEFD6 /* FilterViewController.swift */,
 				BF48DD6E2AC903FD000CEFD6 /* DetailViewController.swift */,
 			);
@@ -337,6 +340,7 @@
 				BF6260E42ACABC59006FB50C /* ScrapViewModel.swift in Sources */,
 				BF48DD452AC3E673000CEFD6 /* ListCell.swift in Sources */,
 				BF48DD472AC4155D000CEFD6 /* FilterViewController.swift in Sources */,
+				BF6260E82ACABFD9006FB50C /* ScrapViewController.swift in Sources */,
 				BF48DD552AC7B3B6000CEFD6 /* JSONDataAdapter.swift in Sources */,
 				BF48DD0E2AC156A1000CEFD6 /* Event.swift in Sources */,
 				BF48DD5E2AC7BD0A000CEFD6 /* APIProvider.swift in Sources */,

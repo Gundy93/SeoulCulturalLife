@@ -18,9 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window = UIWindow(windowScene: windowScene)
-        let useCase = ListUseCase()
-        let listViewmodel = ListViewModel(useCase: useCase) 
-        let jsonAdapter = JSONDataAdapter(useCase: useCase)
+        let listUseCase = ListUseCase()
+        let listViewmodel = ListViewModel(useCase: listUseCase) 
+        let jsonAdapter = JSONDataAdapter(useCase: listUseCase)
         let networkManager = NetworkManager(dataAdapter: jsonAdapter)
         let listViewController = ListViewController(viewModel: listViewmodel,
                                                     networkManager: networkManager)

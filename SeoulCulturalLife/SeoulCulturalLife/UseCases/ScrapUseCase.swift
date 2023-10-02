@@ -9,13 +9,9 @@
 class ScrapUseCase: UseCase {
     
     weak var delegate: UseCaseDelegate? = nil
-    var container: [Event] {
+    var container: [Event] = [] {
         didSet {
             delegate?.useCaseDidUpdate(events: container)
         }
-    }
-    
-    init(container: [Event]) {
-        self.container = container
     }
 }
