@@ -42,6 +42,7 @@
 		BF6260E42ACABC59006FB50C /* ScrapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */; };
 		BF6260E62ACABCD2006FB50C /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E52ACABCD2006FB50C /* EventsViewController.swift */; };
 		BF6260E82ACABFD9006FB50C /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */; };
+		BF6260EA2ACAEF77006FB50C /* ScrapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E92ACAEF77006FB50C /* ScrapCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		BF6260E32ACABC59006FB50C /* ScrapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewModel.swift; sourceTree = "<group>"; };
 		BF6260E52ACABCD2006FB50C /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
+		BF6260E92ACAEF77006FB50C /* ScrapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				BF48DD442AC3E673000CEFD6 /* ListCell.swift */,
+				BF6260E92ACAEF77006FB50C /* ScrapCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				BF48DD0E2AC156A1000CEFD6 /* Event.swift in Sources */,
 				BF48DD5E2AC7BD0A000CEFD6 /* APIProvider.swift in Sources */,
 				BF48DD5B2AC7BA9B000CEFD6 /* EventResponseDTO.swift in Sources */,
+				BF6260EA2ACAEF77006FB50C /* ScrapCell.swift in Sources */,
 				BF48DD0C2AC11D25000CEFD6 /* Gu.swift in Sources */,
 				BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */,
 				BF48DD532AC7B068000CEFD6 /* EventDTO.swift in Sources */,
