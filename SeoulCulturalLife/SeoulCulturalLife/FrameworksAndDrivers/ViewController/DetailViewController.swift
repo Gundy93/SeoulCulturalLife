@@ -42,6 +42,7 @@ final class DetailViewController: UIViewController {
                                                               alignment: .leading)
     private let scrollView: UIScrollView = UIScrollView()
     private let event: Event
+    private let currentScraped: Bool
     private var isScraped: Bool {
         didSet {
             navigationItem.rightBarButtonItem = makeRightBarButtonItem()
@@ -58,6 +59,7 @@ final class DetailViewController: UIViewController {
     init(event: Event, isScraped: Bool) {
         self.event = event
         self.isScraped = isScraped
+        currentScraped = isScraped
         
         super.init(nibName: nil, bundle: nil)
         
@@ -233,6 +235,8 @@ final class DetailViewController: UIViewController {
     }
     
     private func postScrap() {
+        guard currentScraped != isScraped else { return }
+        
         NotificationCenter.default.post(name: GlobalConstant.changeScrapedName,
                                         object: (event, isScraped))
     }

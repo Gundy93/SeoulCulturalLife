@@ -41,6 +41,7 @@ class ViewModel: UseCaseDelegate {
     func postEvents(_ events: [Event], name: Notification.Name) {
         NotificationCenter.default.post(name: name,
                                         object: useCase.filter(from: events,
+                                                               category: category,
                                                                gu: gu,
                                                                isFree: isFree,
                                                                date: date))

@@ -14,4 +14,14 @@ class ScrapUseCase: UseCase {
             delegate?.useCaseDidUpdate(events: container)
         }
     }
+    
+    func filter(from container: [Event], category: Category?) -> [Event] {
+        var container = container
+        
+        if let category {
+            container = container.filter { $0.category == category }
+        }
+        
+        return container
+    }
 }

@@ -95,10 +95,6 @@ final class ScrapViewController: EventsViewController {
                                                selector: #selector(setSnapshot),
                                                name: GlobalConstant.scrapPostName,
                                                object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(setSnapshot),
-                                               name: GlobalConstant.changeScrapedName,
-                                               object: nil)
     }
     
     @objc

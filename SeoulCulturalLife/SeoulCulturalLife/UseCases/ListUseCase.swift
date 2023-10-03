@@ -16,6 +16,10 @@ class ListUseCase: UseCase {
     }
     var current: [Event] = []
     
+    func filter(from container: [Event], category: Category?) -> [Event] {
+        return container
+    }
+    
     func setContainer(_ container: [Event]) {
         current = container
         self.container = container
