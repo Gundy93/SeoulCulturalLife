@@ -45,6 +45,7 @@
 		BF6260EA2ACAEF77006FB50C /* ScrapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E92ACAEF77006FB50C /* ScrapCell.swift */; };
 		BF6260F22ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF6260F02ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld */; };
 		BF6260F62ACBA0CE006FB50C /* CoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */; };
+		BF6260FB2ACBA8E6006FB50C /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		BF6260E92ACAEF77006FB50C /* ScrapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapCell.swift; sourceTree = "<group>"; };
 		BF6260F12ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SeoulCulturalLife.xcdatamodel; sourceTree = "<group>"; };
 		BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAdapter.swift; sourceTree = "<group>"; };
+		BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				BF48DD3B2AC3E0DF000CEFD6 /* ViewController */,
 				BF48DD432AC3E660000CEFD6 /* View */,
 				BF48DD5C2AC7BCEF000CEFD6 /* NetworkManager */,
+				BF6260F72ACBA5FF006FB50C /* CoreDataManager */,
 			);
 			path = FrameworksAndDrivers;
 			sourceTree = "<group>";
@@ -273,6 +276,14 @@
 				BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		BF6260F72ACBA5FF006FB50C /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +381,7 @@
 				BF6260E82ACABFD9006FB50C /* ScrapViewController.swift in Sources */,
 				BF48DD552AC7B3B6000CEFD6 /* JSONDataAdapter.swift in Sources */,
 				BF48DD0E2AC156A1000CEFD6 /* Event.swift in Sources */,
+				BF6260FB2ACBA8E6006FB50C /* EntityManager.swift in Sources */,
 				BF48DD5E2AC7BD0A000CEFD6 /* APIProvider.swift in Sources */,
 				BF48DD5B2AC7BA9B000CEFD6 /* EventResponseDTO.swift in Sources */,
 				BF6260EA2ACAEF77006FB50C /* ScrapCell.swift in Sources */,
