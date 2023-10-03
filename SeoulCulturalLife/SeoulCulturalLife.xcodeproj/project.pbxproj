@@ -44,6 +44,7 @@
 		BF6260E82ACABFD9006FB50C /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */; };
 		BF6260EA2ACAEF77006FB50C /* ScrapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E92ACAEF77006FB50C /* ScrapCell.swift */; };
 		BF6260F22ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF6260F02ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld */; };
+		BF6260F62ACBA0CE006FB50C /* CoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
 		BF6260E92ACAEF77006FB50C /* ScrapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapCell.swift; sourceTree = "<group>"; };
 		BF6260F12ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SeoulCulturalLife.xcdatamodel; sourceTree = "<group>"; };
+		BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 			children = (
 				BF48DD4B2AC7AAF1000CEFD6 /* DataAdapter.swift */,
 				BF48DD542AC7B3B6000CEFD6 /* JSONDataAdapter.swift */,
+				BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */,
 			);
 			path = DataAdapter;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				BF48DD6D2AC7ECD4000CEFD6 /* UIImage+.swift in Sources */,
 				BF48DD642AC7BF37000CEFD6 /* NetworkingError.swift in Sources */,
 				BF48DD362AC31C7A000CEFD6 /* DateFormatter+.swift in Sources */,
+				BF6260F62ACBA0CE006FB50C /* CoreDataAdapter.swift in Sources */,
 				BF48DD1E2AC1B650000CEFD6 /* UseCase.swift in Sources */,
 				BF6260E62ACABCD2006FB50C /* EventsViewController.swift in Sources */,
 				BF48DD492AC429E1000CEFD6 /* UIButton+.swift in Sources */,
