@@ -16,5 +16,6 @@ extension UILabel {
         self.font = font
         self.textAlignment = textAlignment
         self.numberOfLines = numberOfLines
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

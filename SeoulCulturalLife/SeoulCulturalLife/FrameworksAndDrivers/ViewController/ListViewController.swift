@@ -33,17 +33,22 @@ final class ListViewController: EventsViewController {
         configureDataSource()
         addObserver()
         fetchNewEvents()
+        configureLabel()
     }
     
     private func configureViewHierarchy() {
         let safeArea = view.safeAreaLayoutGuide
         
-        view.addSubview(listTableView)
+        [listTableView, noEventsLabel].forEach {
+            view.addSubview($0)
+        }
         NSLayoutConstraint.activate([
             listTableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             listTableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             listTableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            listTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+            listTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            noEventsLabel.centerXAnchor.constraint(equalTo: listTableView.centerXAnchor),
+            noEventsLabel.centerYAnchor.constraint(equalTo: listTableView.centerYAnchor)
         ])
     }
     
@@ -145,6 +150,8 @@ final class ListViewController: EventsViewController {
         listDataSource?.apply(snapshot)
         isLoaded = true
         fetchMoreIfNeeded()
+        
+        noEventsLabel.isHidden = snapshot.numberOfItems > 0
     }
     
     private func fetchMoreIfNeeded() {
@@ -153,6 +160,10 @@ final class ListViewController: EventsViewController {
         
         isLoaded = false
         fetchMoreEvents()
+    }
+    
+    private func configureLabel() {
+        noEventsLabel.text = Constant.noEvents
     }
 }
 
@@ -187,5 +198,6 @@ extension ListViewController {
         
         static let navigationTitle: String = "목록"
         static let ListCellIdentifier: String = "ListCell"
+        static let noEvents: String = "검색 결과가 없습니다."
     }
 }

@@ -23,6 +23,7 @@ final class ScrapViewController: EventsViewController {
         configureDataSource()
         configureViewHierarchy()
         coreDataManager.loadData()
+        configureLabel()
     }
     
     private func configureCollectionView() {
@@ -81,12 +82,16 @@ final class ScrapViewController: EventsViewController {
         let safeArea = view.safeAreaLayoutGuide
         guard let scrapCollectionView else { return }
         
-        view.addSubview(scrapCollectionView)
+        [scrapCollectionView, noEventsLabel].forEach {
+            view.addSubview($0)
+        }
         NSLayoutConstraint.activate([
             scrapCollectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             scrapCollectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             scrapCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            scrapCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+            scrapCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            noEventsLabel.centerXAnchor.constraint(equalTo: scrapCollectionView.centerXAnchor),
+            noEventsLabel.centerYAnchor.constraint(equalTo: scrapCollectionView.centerYAnchor)
         ])
     }
     
@@ -108,7 +113,12 @@ final class ScrapViewController: EventsViewController {
             snapshot.appendItems(events)
             
             self?.scrapDataSource?.apply(snapshot)
+            self?.noEventsLabel.isHidden = snapshot.numberOfItems > 0
         }
+    }
+    
+    private func configureLabel() {
+        noEventsLabel.text = Constant.noEvents
     }
 }
 
@@ -134,5 +144,6 @@ extension ScrapViewController {
         
         static let navigationTitle: String = "스크랩"
         static let ScrapCellIdentifier: String = "ScrapCell"
+        static let noEvents: String = "스크랩이 없습니다."
     }
 }

@@ -14,6 +14,7 @@ class EventsViewController: UIViewController {
     let viewModel: ViewModel
     let networkManager: NetworkManager
     let coreDataManager: CoreDataManager
+    let noEventsLabel: UILabel = UILabel(font: .boldSystemFont(ofSize: 20))
     
     init(viewModel: ViewModel, networkManager: NetworkManager, coreDataManager: CoreDataManager) {
         self.viewModel = viewModel
