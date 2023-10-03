@@ -13,10 +13,12 @@ class EventsViewController: UIViewController {
     
     let viewModel: ViewModel
     let networkManager: NetworkManager
+    let coreDataManager: CoreDataManager
     
-    init(viewModel: ViewModel, networkManager: NetworkManager) {
+    init(viewModel: ViewModel, networkManager: NetworkManager, coreDataManager: CoreDataManager) {
         self.viewModel = viewModel
         self.networkManager = networkManager
+        self.coreDataManager = coreDataManager
         
         super.init(nibName: nil, bundle: nil)
     }
