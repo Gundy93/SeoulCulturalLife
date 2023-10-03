@@ -9,6 +9,7 @@ import CoreData
 
 protocol EntityManager {
     
+    associatedtype Domain
     associatedtype Entity
     
     var container: NSPersistentContainer { get }
@@ -16,13 +17,17 @@ protocol EntityManager {
     var entityDescription: NSEntityDescription? { get }
     
     func saveContext()
-    func creat(entity: Entity)
+    func creat(entity: Domain)
     func readEntities() -> [Entity]
-    func update(entity: Entity)
-    func delete(entity: Entity)
+    func update(entity: Domain)
+    func delete(entity: Domain)
 }
 
 extension EntityManager {
+    
+    var context: NSManagedObjectContext {
+        return container.viewContext
+    }
     
     func saveContext() {
         guard context.hasChanges else { return }
