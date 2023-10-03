@@ -5,18 +5,19 @@
 //  Created by Gundy on 2023/09/25.
 //
 
-
-class ListUseCase: UseCase {
+final class ListUseCase: UseCase {
     
     weak var delegate: UseCaseDelegate? = nil
     var container: [Event] = [] {
         didSet {
-            delegate?.useCaseDidUpdate(events: container, current)
+            delegate?.useCaseDidUpdate(events: container,
+                                       current)
         }
     }
     var current: [Event] = []
     
-    func filter(from container: [Event], category: Category?) -> [Event] {
+    func filter(from container: [Event],
+                category: Category?) -> [Event] {
         return container
     }
     

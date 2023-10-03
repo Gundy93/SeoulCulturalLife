@@ -40,7 +40,13 @@ final class DetailViewController: UIViewController {
     private let containerStackView: UIStackView = UIStackView(spacing: 16,
                                                               axis: .vertical,
                                                               alignment: .leading)
-    private let scrollView: UIScrollView = UIScrollView()
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return scrollView
+    }()
     private let event: Event
     private let currentScraped: Bool
     private var isScraped: Bool {
@@ -49,7 +55,7 @@ final class DetailViewController: UIViewController {
         }
     }
     private var useFee: String? {
-        if let useFee = event.useFee, useFee.isEmpty == false {
+        if event.useFee?.isEmpty == false {
             return event.useFee
         } else {
             return event.isFree ? Constant.free : Constant.notFree
@@ -114,14 +120,15 @@ final class DetailViewController: UIViewController {
         [titleLabel, titleImageView].forEach {
             containerStackView.addArrangedSubview($0)
         }
+        
         [categoryStackView, dateStackView, placeStackView, targetStackView, feeStackView, linkStackView].forEach {
             containerStackView.addArrangedSubview($0)
             $0.arrangedSubviews.first?.setContentHuggingPriority(.required,
                                                                  for: .horizontal)
         }
+        
         scrollView.addSubview(containerStackView)
         view.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor,
                                             constant: 20),
@@ -147,6 +154,7 @@ final class DetailViewController: UIViewController {
                                         title: Constant.portal)
         
         portalLinkButton.titleLabel?.font = .systemFont(ofSize: 17)
+        
         linkStackView.addArrangedSubview(portalLinkButton)
         
         if let homePage = event.homePage {
@@ -161,6 +169,7 @@ final class DetailViewController: UIViewController {
     private func configureTextContents() {
         titleLabel.text = event.title
         titleLabel.lineBreakMode = .byCharWrapping
+        
         categoryStackView.addArrangedSubview(UILabel(text: event.category.rawValue))
         dateStackView.addArrangedSubview(UILabel(text: DateFormatter.shared.dateString(event.startDate,
                                                                                        event.endDate)))
@@ -174,12 +183,14 @@ final class DetailViewController: UIViewController {
         if event.player != nil {
             addPlayerStackView()
         }
+        
         if let program = event.program {
             let programLabel = UILabel(text: program,
                                        numberOfLines: 0)
             
             containerStackView.addArrangedSubview(programLabel)
         }
+        
         if let description = event.description {
             let descriptionLabel = UILabel(text: description,
                                            numberOfLines: 0)
@@ -189,12 +200,11 @@ final class DetailViewController: UIViewController {
     }
     
     private func addPlayerStackView() {
-        guard let player = event.player,
-              player.isEmpty == false else { return }
+        guard event.player?.isEmpty == false else { return }
         
         let playerStackView: UIStackView = UIStackView(spacing: 16,
                                                        axis: .horizontal)
-        let playerLabel =  UILabel(text: player,
+        let playerLabel =  UILabel(text: event.player,
                                    numberOfLines: 0)
         
         [UILabel(text: Constant.player,
@@ -202,13 +212,14 @@ final class DetailViewController: UIViewController {
          playerLabel].forEach {
             playerStackView.addArrangedSubview($0)
         }
+        
         containerStackView.addArrangedSubview(playerStackView)
     }
     
     private func configureImage() {
         guard let urlString = event.imageLink?.absoluteString else { return }
-        
         let key = NSString(string: urlString)
+        
         if let cachedImage = UIImage.cache.object(forKey: key) {
             Task {
                 titleImageView.image = cachedImage

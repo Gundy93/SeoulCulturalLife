@@ -33,8 +33,8 @@ final class ScrapCell: UICollectionViewCell {
         [titleImageView, titleLabel, dateLabel].forEach {
             containerStackView.addArrangedSubview($0)
         }
+        
         contentView.addSubview(containerStackView)
-
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),

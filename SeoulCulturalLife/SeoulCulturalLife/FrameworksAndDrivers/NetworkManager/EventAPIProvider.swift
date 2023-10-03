@@ -16,6 +16,7 @@ struct EventAPIProvider: APIProvider {
     }
     var url: URL? {
         var url = "http://openapi.seoul.go.kr:8088/43455350436b6f723639527a636e76/json/culturalEventInfo/\(startIndex)/\(endIndex)/"
+        
         if let category {
             url += "\(category)/"
         }

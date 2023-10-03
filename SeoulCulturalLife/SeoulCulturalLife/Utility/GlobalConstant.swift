@@ -9,10 +9,12 @@ import Foundation
 
 enum GlobalConstant {
     
-    static let defaultPostName: Notification.Name = Notification.Name("default")
-    static let additionPostName: Notification.Name = Notification.Name("addition")
-    static let filterPostName: Notification.Name = Notification.Name("filter")
-    static let categoryPostName: Notification.Name = Notification.Name("category")
-    static let scrapPostName: Notification.Name = Notification.Name("scrap")
-    static let changeScrapedName: Notification.Name = Notification.Name("changeScraped")
+    typealias Name = Notification.Name
+    
+    static let defaultPostName: Name = Name("default")
+    static let additionPostName: Name = Name("addition")
+    static let filterPostName: Name = Name("filter")
+    static let categoryPostName: Name = Name("category")
+    static let scrapPostName: Name = Name("scrap")
+    static let changeScrapedName: Name = Name("changeScraped")
 }

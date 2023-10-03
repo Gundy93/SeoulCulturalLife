@@ -22,11 +22,13 @@ class ViewModel: UseCaseDelegate {
     
     func setCategory(_ category: Category?) {
         self.category = category
+        
         postFilters(GlobalConstant.filterPostName)
     }
     
     func setGu(_ gu: Gu?) {
         self.gu = gu
+        
         postFilters(GlobalConstant.filterPostName)
     }
     
@@ -38,7 +40,8 @@ class ViewModel: UseCaseDelegate {
         self.date = date
     }
     
-    func postEvents(_ events: [Event], name: Notification.Name) {
+    func postEvents(_ events: [Event],
+                    name: Notification.Name) {
         NotificationCenter.default.post(name: name,
                                         object: useCase.filter(from: events,
                                                                category: category,

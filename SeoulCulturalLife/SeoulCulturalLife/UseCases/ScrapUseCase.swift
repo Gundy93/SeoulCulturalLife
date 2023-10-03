@@ -5,8 +5,7 @@
 //  Created by Gundy on 2023/09/25.
 //
 
-
-class ScrapUseCase: UseCase {
+final class ScrapUseCase: UseCase {
     
     weak var delegate: UseCaseDelegate? = nil
     var container: [Event] = [] {
@@ -15,7 +14,8 @@ class ScrapUseCase: UseCase {
         }
     }
     
-    func filter(from container: [Event], category: Category?) -> [Event] {
+    func filter(from container: [Event],
+                category: Category?) -> [Event] {
         var container = container
         
         if let category {

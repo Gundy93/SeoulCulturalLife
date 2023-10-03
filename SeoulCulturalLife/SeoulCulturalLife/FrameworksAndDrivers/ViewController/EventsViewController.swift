@@ -16,7 +16,9 @@ class EventsViewController: UIViewController {
     let coreDataManager: CoreDataManager
     let noEventsLabel: UILabel = UILabel(font: .boldSystemFont(ofSize: 20))
     
-    init(viewModel: ViewModel, networkManager: NetworkManager, coreDataManager: CoreDataManager) {
+    init(viewModel: ViewModel,
+         networkManager: NetworkManager,
+         coreDataManager: CoreDataManager) {
         self.viewModel = viewModel
         self.networkManager = networkManager
         self.coreDataManager = coreDataManager
@@ -45,7 +47,7 @@ class EventsViewController: UIViewController {
         
         navigationItem?.title = title
         navigationItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.filterActionImageName),
-                                                            primaryAction: presentFilterAction())
+                                                             primaryAction: presentFilterAction())
     }
     
     private func presentFilterAction() -> UIAction {
@@ -73,6 +75,15 @@ class EventsViewController: UIViewController {
         UIImage.cache.setObject(image, forKey: key)
         
         return image
+    }
+    
+    func pushDetailViewController(event: Event) {
+        let detailViewController = DetailViewController(event: event,
+                                                        isScraped: coreDataManager.isScraped(event: event))
+        let navigationController = tabBarController?.navigationController
+        
+        navigationController?.pushViewController(detailViewController,
+                                                 animated: true)
     }
 }
 

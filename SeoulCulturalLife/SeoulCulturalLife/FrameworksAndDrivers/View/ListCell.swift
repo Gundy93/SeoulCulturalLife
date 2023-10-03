@@ -18,32 +18,36 @@ final class ListCell: UITableViewCell {
     private let containerStackView: UIStackView = UIStackView(spacing: 8,
                                                               axis: .horizontal,
                                                               distribution: .fill)
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+    
+    override init(style: UITableViewCell.CellStyle,
+                  reuseIdentifier: String?) {
+        super.init(style: style,
+                   reuseIdentifier: reuseIdentifier)
+        
         configure()
         configureViewHierarchy()
     }
-
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func configure() {
         accessoryType = .disclosureIndicator
     }
-
+    
     private func configureViewHierarchy() {
         [titleLabel, dateLabel].forEach {
             labelStackView.addArrangedSubview($0)
             $0.setContentHuggingPriority(.required,
                                          for: .vertical)
         }
-        [titleImageView, labelStackView].forEach { containerStackView.addArrangedSubview($0) }
+        
+        [titleImageView, labelStackView].forEach { containerStackView.addArrangedSubview($0)
+        }
+        
         contentView.addSubview(containerStackView)
-
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),

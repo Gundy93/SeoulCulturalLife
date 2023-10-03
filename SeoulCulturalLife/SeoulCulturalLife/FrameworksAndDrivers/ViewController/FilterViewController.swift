@@ -26,8 +26,8 @@ final class FilterViewController: UIViewController {
                                       image: UIImage(systemName: Constant.buttonImageName))
     let feeStackView: UIStackView = UIStackView(axis: .horizontal)
     let feeHeaderLabel: UILabel = UILabel(text: Constant.feeHeaderText,
-                                         font: .systemFont(ofSize: 20,
-                                                           weight: .bold))
+                                          font: .systemFont(ofSize: 20,
+                                                            weight: .bold))
     let feeSegmentedControl: UISegmentedControl = UISegmentedControl(items: [Constant.notSelected, Constant.notFree, Constant.free])
     let dateStackView: UIStackView = UIStackView(axis: .horizontal)
     let dateHeaderLabel: UILabel = UILabel(text: Constant.dateHeaderText,
@@ -90,14 +90,14 @@ final class FilterViewController: UIViewController {
         
         datePicker.date = date
     }
-
+    
     private func addObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(setTexts(_:)),
                                                name: GlobalConstant.filterPostName,
                                                object: nil)
     }
-
+    
     @objc
     private func setTexts(_ notification: Notification) {
         guard let (category, gu) = notification.object as? (Category?, Gu?) else { return }
@@ -119,26 +119,32 @@ final class FilterViewController: UIViewController {
     private func configureViewHierarchy() {
         let safeArea = view.safeAreaLayoutGuide
         
-        [categoryHeaderLabel, categoryLabel, categoryButton].forEach {
-            categoryStackView.addArrangedSubview($0)
-        }
-        [guHeaderLabel, guLabel, guButton].forEach {
-            guStackView.addArrangedSubview($0)
-        }
-        [feeHeaderLabel, feeSegmentedControl].forEach {
-            feeStackView.addArrangedSubview($0)
-        }
-        [dateHeaderLabel, dateSegmentedControl, datePicker].forEach {
-            dateStackView.addArrangedSubview($0)
-        }
-        [categoryStackView, guStackView, feeStackView, dateStackView].forEach {
-            containerStackView.addArrangedSubview($0)
-        }
-        view.addSubview(containerStackView)
         [categoryButton, guButton].forEach {
             $0.setContentHuggingPriority(.required,
                                          for: .horizontal)
         }
+        
+        [categoryHeaderLabel, categoryLabel, categoryButton].forEach {
+            categoryStackView.addArrangedSubview($0)
+        }
+        
+        [guHeaderLabel, guLabel, guButton].forEach {
+            guStackView.addArrangedSubview($0)
+        }
+        
+        [feeHeaderLabel, feeSegmentedControl].forEach {
+            feeStackView.addArrangedSubview($0)
+        }
+        
+        [dateHeaderLabel, dateSegmentedControl, datePicker].forEach {
+            dateStackView.addArrangedSubview($0)
+        }
+        
+        [categoryStackView, guStackView, feeStackView, dateStackView].forEach {
+            containerStackView.addArrangedSubview($0)
+        }
+        
+        view.addSubview(containerStackView)
         feeStackView.setCustomSpacing(40, after: feeHeaderLabel)
         dateStackView.setCustomSpacing(40, after: dateHeaderLabel)
         NSLayoutConstraint.activate([
@@ -158,6 +164,7 @@ final class FilterViewController: UIViewController {
         feeSegmentedControl.addTarget(self,
                                       action: #selector(selectIsFree),
                                       for: .valueChanged)
+        
         switch currentFilter.isFree {
         case .none:
             feeSegmentedControl.selectedSegmentIndex = 0
@@ -166,9 +173,11 @@ final class FilterViewController: UIViewController {
         case .some(true):
             feeSegmentedControl.selectedSegmentIndex = 2
         }
+        
         dateSegmentedControl.addTarget(self,
                                        action: #selector(toggleDatePicker),
                                        for: .valueChanged)
+        
         dateSegmentedControl.selectedSegmentIndex = currentFilter.date == nil ? 0 : 1
     }
     
@@ -183,7 +192,7 @@ final class FilterViewController: UIViewController {
             viewModel.setIsFree(true)
         }
     }
-
+    
     @objc
     private func toggleDatePicker(_ segmentedControl: UISegmentedControl) {
         datePicker.isEnabled = segmentedControl.selectedSegmentIndex != 0
@@ -212,7 +221,9 @@ final class FilterViewController: UIViewController {
             } else {
                 self?.viewModel.setDate(nil)
             }
+            
             self?.isDone = true
+            
             self?.dismiss(animated: true)
         }
         
@@ -231,6 +242,7 @@ final class FilterViewController: UIViewController {
         let notSelectedAction = UIAction(title: Constant.notSelected) { [weak self] _ in
             self?.viewModel.setCategory(nil)
         }
+        
         var actions = [notSelectedAction]
         
         Category.allCases.forEach { category in
@@ -249,6 +261,7 @@ final class FilterViewController: UIViewController {
         let notSelectedAction = UIAction(title: Constant.notSelected) { [weak self] _ in
             self?.viewModel.setGu(nil)
         }
+        
         var actions = [notSelectedAction]
         
         Gu.allCases.forEach { gu in

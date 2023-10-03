@@ -5,8 +5,6 @@
 //  Created by Gundy on 2023/09/30.
 //
 
-import Foundation
-
 struct EventDTO: Decodable {
     
     let title: String

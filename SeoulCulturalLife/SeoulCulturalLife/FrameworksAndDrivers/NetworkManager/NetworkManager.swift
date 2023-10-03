@@ -24,12 +24,15 @@ final class NetworkManager {
     
     func loadMoreData(_ category: Category?) async {
         currentIndex += 100
-        await fetchData(category, isNewData: false)
+        await fetchData(category,
+                        isNewData: false)
     }
     
-    private func fetchData(_ category: Category?, isNewData: Bool) async {
+    private func fetchData(_ category: Category?,
+                           isNewData: Bool) async {
         let provider = EventAPIProvider(category: category?.rawValue,
                                         startIndex: currentIndex)
+        
         do {
             let data = try await fetcher.fetchData(url: provider.url)
             

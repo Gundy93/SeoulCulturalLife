@@ -5,8 +5,6 @@
 //  Created by Gundy on 2023/09/30.
 //
 
-import Foundation
-
 struct EventResponseDTO: Decodable {
     
     let culturalEventInfo: EventInfoDTO

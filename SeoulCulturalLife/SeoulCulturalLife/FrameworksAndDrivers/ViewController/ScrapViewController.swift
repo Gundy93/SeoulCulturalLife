@@ -35,11 +35,11 @@ final class ScrapViewController: EventsViewController {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: makeScrapLayout())
         
-        collectionView.delegate = self
         collectionView.register(ScrapCell.self,
                                 forCellWithReuseIdentifier: Constant.ScrapCellIdentifier)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         scrapCollectionView = collectionView
     }
     
@@ -49,7 +49,6 @@ final class ScrapViewController: EventsViewController {
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1/3),
                 heightDimension: .fractionalHeight(1)))
-            
             let containerGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                    heightDimension: .fractionalHeight(1/3)),
@@ -74,9 +73,10 @@ final class ScrapViewController: EventsViewController {
             
             cell.removeImage()
             cell.setText(title: event.title, date: dateText)
+            
             Task { [weak self] in
                 cell.setTitleImage(image: await self?.loadImage(url: event.imageLink),
-                                   title: event.title) 
+                                   title: event.title)
             }
             
             return cell
@@ -132,12 +132,7 @@ extension ScrapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let event = scrapDataSource?.itemIdentifier(for: indexPath) else { return }
         
-        let detailViewController = DetailViewController(event: event,
-                                                        isScraped: coreDataManager.isScraped(event: event))
-        let navigationController = tabBarController?.navigationController
-        
-        navigationController?.pushViewController(detailViewController,
-                                                 animated: true)
+        pushDetailViewController(event: event)
         collectionView.deselectItem(at: indexPath,
                                     animated: true)
     }

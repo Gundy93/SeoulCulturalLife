@@ -75,7 +75,8 @@ final class ListViewController: EventsViewController {
                                                            event.endDate)
             
             cell.removeImage()
-            cell.setText(title: event.title, date: dateText)
+            cell.setText(title: event.title,
+                         date: dateText)
             Task { [weak self] in
                 cell.setTitleImage(image: await self?.loadImage(url: event.imageLink),
                                    title: event.title) 
@@ -103,6 +104,7 @@ final class ListViewController: EventsViewController {
     @objc
     private func setSnapshot(_ notification: Notification) {
         guard let events = notification.object as? [Event] else { return }
+        
         Task { [weak self] in
             var snapshot = EventSnapshot()
             
@@ -153,7 +155,9 @@ final class ListViewController: EventsViewController {
         
         snapshot.appendItems(events)
         listDataSource?.apply(snapshot)
+        
         isLoaded = true
+        
         fetchMoreIfNeeded()
         
         noEventsLabel.isHidden = snapshot.numberOfItems > 0
@@ -164,6 +168,7 @@ final class ListViewController: EventsViewController {
               isLoaded else { return }
         
         isLoaded = false
+        
         fetchMoreEvents()
     }
     
@@ -176,9 +181,10 @@ extension ListViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard isLoaded else { return }
+        
         if scrollView.contentOffset.y > scrollView.contentSize.height - (scrollView.bounds.height * 2) {
-            
             isLoaded = false
+            
             fetchMoreEvents()
         }
     }
@@ -186,12 +192,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let event = listDataSource?.itemIdentifier(for: indexPath) else { return }
         
-        let detailViewController = DetailViewController(event: event,
-                                                        isScraped: coreDataManager.isScraped(event: event))
-        let navigationController = tabBarController?.navigationController
-        
-        navigationController?.pushViewController(detailViewController,
-                                                 animated: true)
+        pushDetailViewController(event: event)
         tableView.deselectRow(at: indexPath,
                               animated: true)
     }
