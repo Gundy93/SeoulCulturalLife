@@ -43,6 +43,7 @@
 		BF6260E62ACABCD2006FB50C /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E52ACABCD2006FB50C /* EventsViewController.swift */; };
 		BF6260E82ACABFD9006FB50C /* ScrapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */; };
 		BF6260EA2ACAEF77006FB50C /* ScrapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260E92ACAEF77006FB50C /* ScrapCell.swift */; };
+		BF6260F22ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF6260F02ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		BF6260E52ACABCD2006FB50C /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapViewController.swift; sourceTree = "<group>"; };
 		BF6260E92ACAEF77006FB50C /* ScrapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapCell.swift; sourceTree = "<group>"; };
+		BF6260F12ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SeoulCulturalLife.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				BF48DD392AC31F9C000CEFD6 /* ViewModel */,
+				BF6260F42ACBA01E006FB50C /* DTO */,
+				BF6260F32ACB9F25006FB50C /* CoreData */,
 				BF48DD4A2AC7AAD1000CEFD6 /* DataAdapter */,
 			);
 			path = InterfaceAdapters;
@@ -234,8 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				BF48DD4B2AC7AAF1000CEFD6 /* DataAdapter.swift */,
-				BF48DD522AC7B068000CEFD6 /* EventDTO.swift */,
-				BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */,
 				BF48DD542AC7B3B6000CEFD6 /* JSONDataAdapter.swift */,
 			);
 			path = DataAdapter;
@@ -251,6 +253,23 @@
 				BF48DD672AC7C38B000CEFD6 /* NetworkManager.swift */,
 			);
 			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		BF6260F32ACB9F25006FB50C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BF6260F02ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		BF6260F42ACBA01E006FB50C /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				BF48DD522AC7B068000CEFD6 /* EventDTO.swift */,
+				BF48DD5A2AC7BA9B000CEFD6 /* EventResponseDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,6 +355,7 @@
 				BF48DD492AC429E1000CEFD6 /* UIButton+.swift in Sources */,
 				BF48DD4C2AC7AAF1000CEFD6 /* DataAdapter.swift in Sources */,
 				BF48DD222AC1B74E000CEFD6 /* ListUseCase.swift in Sources */,
+				BF6260F22ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld in Sources */,
 				BF48DD402AC3E358000CEFD6 /* UIStackView+.swift in Sources */,
 				BF48DCF22ABD2FA9000CEFD6 /* ListViewController.swift in Sources */,
 				BF48DCEE2ABD2FA9000CEFD6 /* AppDelegate.swift in Sources */,
@@ -573,6 +593,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BF6260F02ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF6260F12ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodel */,
+			);
+			currentVersion = BF6260F12ACB9CBD006FB50C /* SeoulCulturalLife.xcdatamodel */;
+			path = SeoulCulturalLife.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BF48DCE22ABD2FA9000CEFD6 /* Project object */;
 }
