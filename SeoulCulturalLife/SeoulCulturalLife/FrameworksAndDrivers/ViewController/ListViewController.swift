@@ -170,10 +170,13 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let event = listDataSource?.itemIdentifier(for: indexPath) else { return }
         
-        let detailViewController = DetailViewController(event: event)
+        let detailViewController = DetailViewController(event: event,
+                                                        isScraped: coreDataManager.isScraped(event: event))
         
         navigationController?.pushViewController(detailViewController,
                                                  animated: true)
+        tableView.deselectRow(at: indexPath,
+                              animated: true)
     }
 }
 

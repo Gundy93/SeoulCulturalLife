@@ -115,10 +115,13 @@ extension ScrapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let event = scrapDataSource?.itemIdentifier(for: indexPath) else { return }
         
-        let detailViewController = DetailViewController(event: event)
+        let detailViewController = DetailViewController(event: event,
+                                                        isScraped: coreDataManager.isScraped(event: event))
         
         navigationController?.pushViewController(detailViewController,
                                                  animated: true)
+        collectionView.deselectItem(at: indexPath,
+                                    animated: true)
     }
 }
 

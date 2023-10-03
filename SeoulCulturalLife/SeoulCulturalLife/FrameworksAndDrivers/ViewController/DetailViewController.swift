@@ -42,6 +42,11 @@ final class DetailViewController: UIViewController {
                                                               alignment: .leading)
     private let scrollView: UIScrollView = UIScrollView()
     private let event: Event
+    private var isScraped: Bool {
+        didSet {
+            navigationItem.rightBarButtonItem = makeRightBarButtonItem()
+        }
+    }
     private var useFee: String? {
         if let useFee = event.useFee, useFee.isEmpty == false {
             return event.useFee
@@ -50,8 +55,9 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    init(event: Event) {
+    init(event: Event, isScraped: Bool) {
         self.event = event
+        self.isScraped = isScraped
         
         super.init(nibName: nil, bundle: nil)
         
@@ -75,6 +81,23 @@ final class DetailViewController: UIViewController {
     
     private func configureNavigationBar() {
         navigationItem.title = Constant.navigationTitle
+        navigationItem.rightBarButtonItem = makeRightBarButtonItem()
+    }
+    
+    private func makeRightBarButtonItem() -> UIBarButtonItem {
+        let image = UIImage(systemName: isScraped ? Constant.unscrapImageName : Constant.scrapImageName)
+        let action = scrapAction()
+        
+        return UIBarButtonItem(image: image,
+                               primaryAction: scrapAction())
+    }
+    
+    private func scrapAction() -> UIAction {
+        let action = UIAction() { [weak self] _ in
+            self?.isScraped.toggle()
+        }
+        
+        return action
     }
     
     private func configureViewHierarchy() {
@@ -221,5 +244,7 @@ extension DetailViewController {
         static let navigationTitle: String = "상세 정보"
         static let free: String = "무료"
         static let notFree: String = "유료"
+        static let scrapImageName: String = "plus.circle"
+        static let unscrapImageName: String = "minus.circle"
     }
 }
