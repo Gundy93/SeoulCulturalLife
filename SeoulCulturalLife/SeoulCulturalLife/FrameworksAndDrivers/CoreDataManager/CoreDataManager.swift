@@ -14,6 +14,8 @@ final class CoreDataManager {
     
     init(dataAdapter: CoreDataAdapter) {
         self.dataAdapter = dataAdapter
+        
+        addObserver()
     }
     
     func loadData() {
@@ -24,10 +26,12 @@ final class CoreDataManager {
     
     func scrap(event: Event) {
         entityManager.creat(entity: event)
+        loadData()
     }
     
     func unscrap(event: Event) {
         entityManager.delete(entity: event)
+        loadData()
     }
     
     func isScraped(event: Event) -> Bool {

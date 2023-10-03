@@ -13,28 +13,28 @@ final class ScrapViewModel: ViewModel {
         super.setCategory(category)
         
         postEvents(useCase.container,
-                   name: GlobalConstant.scrapFilterPostName)
+                   name: GlobalConstant.scrapPostName)
     }
     
     override func setGu(_ gu: Gu?) {
         super.setGu(gu)
         
         postEvents(useCase.container,
-                   name: GlobalConstant.scrapFilterPostName)
+                   name: GlobalConstant.scrapPostName)
     }
     
     override func setIsFree(_ isFree: Bool?) {
         super.setIsFree(isFree)
         
         postEvents(useCase.container,
-                   name: GlobalConstant.scrapFilterPostName)
+                   name: GlobalConstant.scrapPostName)
     }
     
     override func setDate(_ date: Date?) {
         super.setDate(date)
         
         postEvents(useCase.container,
-                   name: GlobalConstant.scrapFilterPostName)
+                   name: GlobalConstant.scrapPostName)
     }
     
     override func useCaseDidUpdate(events: [Event]...) {

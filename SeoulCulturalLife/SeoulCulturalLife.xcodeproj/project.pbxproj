@@ -48,6 +48,7 @@
 		BF6260FB2ACBA8E6006FB50C /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */; };
 		BF6260FD2ACBAB4A006FB50C /* EventEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FC2ACBAB4A006FB50C /* EventEntityManager.swift */; };
 		BF6260FF2ACBB4FE006FB50C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FE2ACBB4FE006FB50C /* CoreDataManager.swift */; };
+		BF6261012ACBC3CA006FB50C /* EventsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6261002ACBC3CA006FB50C /* EventsTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		BF6260FC2ACBAB4A006FB50C /* EventEntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEntityManager.swift; sourceTree = "<group>"; };
 		BF6260FE2ACBB4FE006FB50C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		BF6261002ACBC3CA006FB50C /* EventsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				BF6260E72ACABFD9006FB50C /* ScrapViewController.swift */,
 				BF48DD462AC4155D000CEFD6 /* FilterViewController.swift */,
 				BF48DD6E2AC903FD000CEFD6 /* DetailViewController.swift */,
+				BF6261002ACBC3CA006FB50C /* EventsTabBarController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				BF6260F62ACBA0CE006FB50C /* CoreDataAdapter.swift in Sources */,
 				BF48DD1E2AC1B650000CEFD6 /* UseCase.swift in Sources */,
 				BF6260E62ACABCD2006FB50C /* EventsViewController.swift in Sources */,
+				BF6261012ACBC3CA006FB50C /* EventsTabBarController.swift in Sources */,
 				BF48DD492AC429E1000CEFD6 /* UIButton+.swift in Sources */,
 				BF48DD4C2AC7AAF1000CEFD6 /* DataAdapter.swift in Sources */,
 				BF48DD222AC1B74E000CEFD6 /* ListUseCase.swift in Sources */,

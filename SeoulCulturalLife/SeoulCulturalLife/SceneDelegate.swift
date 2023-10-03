@@ -18,18 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window = UIWindow(windowScene: windowScene)
-        let listUseCase = ListUseCase()
-        let scrapUseCase = ScrapUseCase()
-        let listViewModel = ListViewModel(useCase: listUseCase)
-        let scrapViewModel = ScrapViewModel(useCase: scrapUseCase)
-        let jsonAdapter = JSONDataAdapter(useCase: listUseCase)
-        let coreDataAdapter = CoreDataAdapter(useCase: scrapUseCase)
-        let networkManager = NetworkManager(dataAdapter: jsonAdapter)
-        let coreDataManager = CoreDataManager(dataAdapter: coreDataAdapter)
-        let listViewController = ListViewController(viewModel: listViewModel,
-                                                    networkManager: networkManager,
-                                                    coreDataManager: coreDataManager)
-        window?.rootViewController = UINavigationController(rootViewController: listViewController)
+        
+        window?.rootViewController = EventsTabBarController()
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }

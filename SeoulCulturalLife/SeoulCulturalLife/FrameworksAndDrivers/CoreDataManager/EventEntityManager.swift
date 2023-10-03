@@ -12,14 +12,24 @@ struct EventEntityManager: EntityManager {
     typealias Domain = Event
     typealias Entity = EventEntity
     
-    let container: NSPersistentContainer = NSPersistentContainer(name: Constant.dataModelName)
+    let container: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: Constant.dataModelName)
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+
+        return container
+    }()
     var entityDescription: NSEntityDescription? {
         return NSEntityDescription.entity(forEntityName: Constant.entityName,
                                           in: context)
     }
     
     func creat(entity: Event) {
-        guard let description = entityDescription else { return }
+        guard let description = entityDescription,
+              findEntity(entity) == nil else { return }
         let eventEntity = NSManagedObject(entity: description,
                                           insertInto: context)
         

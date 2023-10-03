@@ -34,6 +34,12 @@ class EventsViewController: UIViewController {
         configurePresentStyle()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.tabBarController?.tabBar.isHidden = false
+    }
+    
     private func configurePresentStyle() {
         modalPresentationStyle = .popover
         view.backgroundColor = .systemBackground

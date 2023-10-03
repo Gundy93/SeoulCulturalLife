@@ -173,6 +173,7 @@ extension ListViewController: UITableViewDelegate {
         let detailViewController = DetailViewController(event: event,
                                                         isScraped: coreDataManager.isScraped(event: event))
         
+        navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(detailViewController,
                                                  animated: true)
         tableView.deselectRow(at: indexPath,

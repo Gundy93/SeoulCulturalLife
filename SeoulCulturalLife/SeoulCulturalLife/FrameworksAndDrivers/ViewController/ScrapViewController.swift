@@ -17,11 +17,12 @@ final class ScrapViewController: EventsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addObserver()
         configureNavigationBar(Constant.navigationTitle)
         configureCollectionView()
         configureDataSource()
         configureViewHierarchy()
-        addObserver()
+        coreDataManager.loadData()
     }
     
     private func configureCollectionView() {
@@ -94,6 +95,10 @@ final class ScrapViewController: EventsViewController {
                                                selector: #selector(setSnapshot),
                                                name: GlobalConstant.scrapPostName,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setSnapshot),
+                                               name: GlobalConstant.changeScrapedName,
+                                               object: nil)
     }
     
     @objc
@@ -105,6 +110,7 @@ final class ScrapViewController: EventsViewController {
             
             snapshot.appendSections([0])
             snapshot.appendItems(events)
+            
             self?.scrapDataSource?.apply(snapshot)
         }
     }
@@ -118,6 +124,7 @@ extension ScrapViewController: UICollectionViewDelegate {
         let detailViewController = DetailViewController(event: event,
                                                         isScraped: coreDataManager.isScraped(event: event))
         
+        navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(detailViewController,
                                                  animated: true)
         collectionView.deselectItem(at: indexPath,
