@@ -27,13 +27,18 @@ final class ListViewController: EventsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar(Constant.navigationTitle)
         configureViewHierarchy()
         configureTableView()
         configureDataSource()
         addObserver()
         fetchNewEvents()
         configureLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureNavigationBar(Constant.navigationTitle)
     }
     
     private func configureViewHierarchy() {
@@ -183,8 +188,8 @@ extension ListViewController: UITableViewDelegate {
         
         let detailViewController = DetailViewController(event: event,
                                                         isScraped: coreDataManager.isScraped(event: event))
+        let navigationController = tabBarController?.navigationController
         
-        navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(detailViewController,
                                                  animated: true)
         tableView.deselectRow(at: indexPath,

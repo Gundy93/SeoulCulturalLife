@@ -35,20 +35,16 @@ class EventsViewController: UIViewController {
         configurePresentStyle()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.tabBarController?.tabBar.isHidden = false
-    }
-    
     private func configurePresentStyle() {
         modalPresentationStyle = .popover
         view.backgroundColor = .systemBackground
     }
     
     func configureNavigationBar(_ title: String) {
-        navigationItem.title = title
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.filterActionImageName),
+        let navigationItem = tabBarController?.navigationItem
+        
+        navigationItem?.title = title
+        navigationItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constant.filterActionImageName),
                                                             primaryAction: presentFilterAction())
     }
     

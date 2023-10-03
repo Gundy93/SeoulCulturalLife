@@ -34,8 +34,7 @@ final class EventsTabBarController: UITabBarController {
         listViewController.tabBarItem.image = UIImage(systemName: Constant.listImageName)
         scrapViewController.tabBarItem.image = UIImage(systemName: Constant.scrapImageName)
         
-        setViewControllers([UINavigationController(rootViewController: listViewController),
-                            UINavigationController(rootViewController: scrapViewController)],
+        setViewControllers([listViewController, scrapViewController],
                            animated: false)
     }
 }

@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        window?.rootViewController = EventsTabBarController()
+        window?.rootViewController = UINavigationController(rootViewController: EventsTabBarController()) 
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }

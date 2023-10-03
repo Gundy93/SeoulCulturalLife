@@ -18,12 +18,17 @@ final class ScrapViewController: EventsViewController {
         super.viewDidLoad()
         
         addObserver()
-        configureNavigationBar(Constant.navigationTitle)
         configureCollectionView()
         configureDataSource()
         configureViewHierarchy()
         coreDataManager.loadData()
         configureLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureNavigationBar(Constant.navigationTitle)
     }
     
     private func configureCollectionView() {
@@ -129,8 +134,8 @@ extension ScrapViewController: UICollectionViewDelegate {
         
         let detailViewController = DetailViewController(event: event,
                                                         isScraped: coreDataManager.isScraped(event: event))
+        let navigationController = tabBarController?.navigationController
         
-        navigationController?.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(detailViewController,
                                                  animated: true)
         collectionView.deselectItem(at: indexPath,
