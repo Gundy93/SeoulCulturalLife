@@ -79,6 +79,12 @@ final class DetailViewController: UIViewController {
         configureImage()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        postScrap()
+    }
+    
     private func configureNavigationBar() {
         navigationItem.title = Constant.navigationTitle
         navigationItem.rightBarButtonItem = makeRightBarButtonItem()
@@ -86,7 +92,6 @@ final class DetailViewController: UIViewController {
     
     private func makeRightBarButtonItem() -> UIBarButtonItem {
         let image = UIImage(systemName: isScraped ? Constant.unscrapImageName : Constant.scrapImageName)
-        let action = scrapAction()
         
         return UIBarButtonItem(image: image,
                                primaryAction: scrapAction())
@@ -225,6 +230,11 @@ final class DetailViewController: UIViewController {
         }
         
         return action
+    }
+    
+    private func postScrap() {
+        NotificationCenter.default.post(name: GlobalConstant.changeScrapedName,
+                                        object: (event, isScraped))
     }
 }
 

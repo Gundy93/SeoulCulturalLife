@@ -5,6 +5,8 @@
 //  Created by Gundy on 2023/10/03.
 //
 
+import Foundation
+
 final class CoreDataManager {
     
     private let entityManager: EventEntityManager = EventEntityManager()
@@ -30,5 +32,23 @@ final class CoreDataManager {
     
     func isScraped(event: Event) -> Bool {
         return entityManager.readEntities().contains { $0.imageLink == event.imageLink?.absoluteString }
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(changeScraped),
+                                               name: GlobalConstant.changeScrapedName,
+                                               object: nil)
+    }
+    
+    @objc
+    private func changeScraped(_ notification: Notification) {
+        guard let (event, isScraped) = notification.object as? (Event, Bool) else { return }
+        
+        if isScraped {
+            scrap(event: event)
+        } else {
+            unscrap(event: event)
+        }
     }
 }
