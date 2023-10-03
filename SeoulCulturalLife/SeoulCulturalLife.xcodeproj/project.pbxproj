@@ -47,6 +47,7 @@
 		BF6260F62ACBA0CE006FB50C /* CoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */; };
 		BF6260FB2ACBA8E6006FB50C /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */; };
 		BF6260FD2ACBAB4A006FB50C /* EventEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FC2ACBAB4A006FB50C /* EventEntityManager.swift */; };
+		BF6260FF2ACBB4FE006FB50C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6260FE2ACBB4FE006FB50C /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		BF6260F52ACBA0CE006FB50C /* CoreDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAdapter.swift; sourceTree = "<group>"; };
 		BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		BF6260FC2ACBAB4A006FB50C /* EventEntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEntityManager.swift; sourceTree = "<group>"; };
+		BF6260FE2ACBB4FE006FB50C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 			children = (
 				BF6260FA2ACBA8E6006FB50C /* EntityManager.swift */,
 				BF6260FC2ACBAB4A006FB50C /* EventEntityManager.swift */,
+				BF6260FE2ACBB4FE006FB50C /* CoreDataManager.swift */,
 			);
 			path = CoreDataManager;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				BF48DD0C2AC11D25000CEFD6 /* Gu.swift in Sources */,
 				BF48DD202AC1B6AE000CEFD6 /* UseCaseDelegate.swift in Sources */,
 				BF48DD532AC7B068000CEFD6 /* EventDTO.swift in Sources */,
+				BF6260FF2ACBB4FE006FB50C /* CoreDataManager.swift in Sources */,
 				BF48DD682AC7C38B000CEFD6 /* NetworkManager.swift in Sources */,
 				BF48DD332AC2C73E000CEFD6 /* ViewModel.swift in Sources */,
 				BF48DD6F2AC903FD000CEFD6 /* DetailViewController.swift in Sources */,
