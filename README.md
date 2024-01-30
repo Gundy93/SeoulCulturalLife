@@ -35,7 +35,7 @@ Gundy의 서울시 문화행사 정보 앱입니다. 서울문화포털에서 �
 
 ### Detail
 
-![Detail](https://github.com/Gundy93/SeoulCulturalLife/assets/106914201/5c0949bc-924b-4983-9cea-460ecd963dcd)
+![서문탁 UML](https://github.com/Gundy93/SeoulCulturalLife/assets/106914201/257db89d-7a18-49a4-bb7d-1b5185b035aa)
 
 ## 🗂 File Tree
 
